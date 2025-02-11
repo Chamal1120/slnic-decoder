@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nic_decoder/main.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,13 +11,8 @@ class HomePage extends StatelessWidget {
         children: [
           Text(
             'NIC Decoder',
-            style: TextStyle(
-              color: flavor.yellow,
-              fontSize: 45.0,
-              fontWeight: FontWeight.bold,
+            style: Theme.of(context).textTheme.bodyLarge,
             ),
-          ),
-
         ],
       ),
     );
