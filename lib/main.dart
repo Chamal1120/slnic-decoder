@@ -3,10 +3,9 @@ import 'package:flutter_nic_decoder/controllers/nav_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter_nic_decoder/screens/home.dart';
 import 'package:flutter_nic_decoder/screens/about.dart';
-import 'package:catppuccin_flutter/catppuccin_flutter.dart';
+import 'package:flutter_nic_decoder/theme/palette.dart';
 
-// Extract mocha flavor from catppuccin flutter package
-Flavor flavor = catppuccin.mocha;
+final mocha = CatppuccinMocha.flavor;
 
 void main() {
   runApp(const MyApp());
@@ -25,38 +24,50 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
         useMaterial3: true,
         appBarTheme: AppBarTheme(
-          backgroundColor: flavor.base,
+          backgroundColor: mocha.base,
         ),
-        scaffoldBackgroundColor: flavor.crust,
         textTheme: TextTheme(
           bodyLarge: TextStyle(
-            color: flavor.text,
+            color: mocha.yellow,
+            fontSize: 45.0,
+            fontWeight: FontWeight.bold,
           ),
           bodyMedium: TextStyle(
-            color: flavor.text,
+            color: mocha.yellow,
+            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
           ),
           bodySmall: TextStyle(
-            color: flavor.text,
+            color: mocha.text,
+            fontSize: 12.0,
           ),
         ),
         navigationBarTheme: NavigationBarThemeData(
-          backgroundColor: flavor.crust,
-          indicatorColor: flavor.yellow,
+          backgroundColor: mocha.base,
+          indicatorColor: mocha.yellow,
           labelTextStyle: WidgetStateProperty.resolveWith(
             (Set<WidgetState> states) {
               if (states.contains(WidgetState.selected)) {
-                return TextStyle(color: flavor.yellow);
+                return TextStyle(
+                  color: mocha.yellow,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12.0,
+                );
               } else {
-                return TextStyle(color: flavor.yellow);
+                return TextStyle(
+                  color: mocha.yellow,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12.0,
+                );
               }
             },
           ),
           iconTheme: WidgetStateProperty.resolveWith(
             (Set<WidgetState> states) {
               if (states.contains(WidgetState.selected)) {
-                return IconThemeData(color: flavor.crust);
+                return IconThemeData(color: mocha.crust);
               } else {
-                return IconThemeData(color: flavor.yellow);
+                return IconThemeData(color: mocha.yellow);
               }
             },
           ),
@@ -94,13 +105,22 @@ class NavBarM3 extends StatelessWidget {
           );
         },
       ),
-      body: Obx(
-        () {
-          return Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: pages[navController.selectedPage.value],
-          );
-        },
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [mocha.mantle, mocha.crust],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Obx(
+          () {
+            return Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: pages[navController.selectedPage.value],
+            );
+          },
+        ),
       ),
     );
   }
