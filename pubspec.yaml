@@ -8,7 +8,6 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  catppuccin_flutter: ^1.0.0
   get: ^4.6.6
   flutter_linkify: ^6.0.0
   url_launcher: ^6.3.1
