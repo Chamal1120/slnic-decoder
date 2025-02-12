@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:flutter_nic_decoder/theme/theme.dart';
 import 'package:flutter_nic_decoder/screens/home.dart';
 import 'package:flutter_nic_decoder/screens/about.dart';
-import 'package:flutter_nic_decoder/screens/result.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
 class NavBarM3 extends StatelessWidget {
   NavBarM3({super.key});
 
-  final List<Widget> pages = [HomePage(), AboutPage(), ResultPage()];
+  final List<Widget> pages = [HomePage(), AboutPage()];
 
   final NavController navController = Get.put(NavController());
 
