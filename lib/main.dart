@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nic_decoder/controllers/nav_controller.dart';
 import 'package:get/get.dart';
+import 'package:flutter_nic_decoder/theme/theme.dart';
 import 'package:flutter_nic_decoder/screens/home.dart';
 import 'package:flutter_nic_decoder/screens/about.dart';
-import 'package:flutter_nic_decoder/theme/palette.dart';
-
-final mocha = CatppuccinMocha.flavor;
+import 'package:flutter_nic_decoder/screens/result.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,73 +15,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter NIC Decoder',
-
-      // Custom theme data using catppuccin
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        appBarTheme: AppBarTheme(
-          backgroundColor: mocha.base,
-        ),
-        textTheme: TextTheme(
-          bodyLarge: TextStyle(
-            color: mocha.yellow,
-            fontSize: 45.0,
-            fontWeight: FontWeight.bold,
-          ),
-          bodyMedium: TextStyle(
-            color: mocha.yellow,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-          ),
-          bodySmall: TextStyle(
-            color: mocha.text,
-            fontSize: 12.0,
-          ),
-        ),
-        navigationBarTheme: NavigationBarThemeData(
-          backgroundColor: mocha.base,
-          indicatorColor: mocha.yellow,
-          labelTextStyle: WidgetStateProperty.resolveWith(
-            (Set<WidgetState> states) {
-              if (states.contains(WidgetState.selected)) {
-                return TextStyle(
-                  color: mocha.yellow,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12.0,
-                );
-              } else {
-                return TextStyle(
-                  color: mocha.yellow,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12.0,
-                );
-              }
-            },
-          ),
-          iconTheme: WidgetStateProperty.resolveWith(
-            (Set<WidgetState> states) {
-              if (states.contains(WidgetState.selected)) {
-                return IconThemeData(color: mocha.crust);
-              } else {
-                return IconThemeData(color: mocha.yellow);
-              }
-            },
-          ),
-        ),
-      ),
+      darkTheme: darkCatppuccinTheme,
       themeMode: ThemeMode.dark,
       home: NavBarM3(),
     );
   }
 }
 
+// Navigation Bar with Material 3
 class NavBarM3 extends StatelessWidget {
   NavBarM3({super.key});
 
-  final List<Widget> pages = [HomePage(), AboutPage()];
+  final List<Widget> pages = [HomePage(), AboutPage(), ResultPage()];
 
   final NavController navController = Get.put(NavController());
 
@@ -107,11 +54,7 @@ class NavBarM3 extends StatelessWidget {
       ),
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [mocha.mantle, mocha.crust],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
+          gradient: catppuccinMochaGradient,
         ),
         child: Obx(
           () {
