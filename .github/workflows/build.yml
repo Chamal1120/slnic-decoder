@@ -1,0 +1,67 @@
+name: Flutter Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    name: Build Flutter APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+        
+      - name: Update version in pubspec.yaml
+        run: |
+          VERSION="${GITHUB_REF##*/}"
+          sed -i "s/version: .*/version: $VERSION/" pubspec.yaml
+
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Rename APK with version
+        run: mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/nic-app-${{ github.ref_name }}.apk
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-apk
+          path: build/app/outputs/flutter-apk/nic-app-${{ github.ref_name }}.apk
+
+  release:
+    name: Create GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download APK artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: app-release-apk
+          path: release-assets/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            release-assets/nic-app-${{ github.ref_name }}.apk
+          draft: false
+          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
