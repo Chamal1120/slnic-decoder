@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nic_decoder/theme/theme.dart';
+import 'package:flutter_nic_decoder/controllers/nic_controller.dart';
+import 'package:get/get.dart';
 
 class ResultPage extends StatelessWidget {
   const ResultPage({super.key});
@@ -13,9 +15,11 @@ class ResultPage extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(30.0),
-          child: const Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [TableCard()],
+            children: [
+              TableCard(),
+            ],
           ),
         ),
       ),
@@ -24,7 +28,10 @@ class ResultPage extends StatelessWidget {
 }
 
 class TableCard extends StatelessWidget {
-  const TableCard({super.key});
+  TableCard({super.key});
+
+  // Get the existing controller
+  final NicController nicController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -43,26 +50,40 @@ class TableCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Table(
-        columnWidths: {
-          0: FlexColumnWidth(1),
-          1: FlexColumnWidth(1),
-        },
-        border: TableBorder(
-          horizontalInside: BorderSide(color: theme.dividerColor, width: 1),
-        ),
-        children: [
 
-          // Buids rows using BuildTableRow widget
-          _buildTableRow(context, 'Serial', '0937'),
-          _buildTableRow(context, 'Date of Birth', '1985/12/05'),
-          _buildTableRow(context, 'Gender', 'Male'),
-          _buildTableRow(context, 'Ability to vote', 'Yes'),
-        ],
+      // Load the values based on state variables of nicController
+      child: Obx(
+        () {
+          if (nicController.isLoading.value) {
+            return const CircularProgressIndicator.adaptive();
+          }
+          final nicInfo = nicController.nicInfo.value;
+          return Table(
+            columnWidths: {
+              0: FlexColumnWidth(1),
+              1: FlexColumnWidth(1),
+            },
+            border: TableBorder(
+              horizontalInside: BorderSide(color: theme.dividerColor, width: 1),
+            ),
+            children: [
+              // Buids rows using BuildTableRow widget
+              _buildTableRow(
+                context, 'Serial No', nicInfo?.serialNo ?? 'N/A'),
+              _buildTableRow(
+                  context, 'Date of Birth', nicInfo?.birthDate ?? 'N/A'),
+              _buildTableRow(
+                context, 'Gender', nicInfo?.gender ?? 'N/A'),
+              _buildTableRow(
+                  context, 'Ability to Vote', nicInfo?.votability ?? 'N/A'),
+            ],
+          );
+        },
       ),
     );
   }
 
+  // Create custom rows for the table
   TableRow _buildTableRow(
     BuildContext context,
     title,

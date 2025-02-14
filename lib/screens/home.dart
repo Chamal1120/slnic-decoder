@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nic_decoder/controllers/nic_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter_nic_decoder/screens/result.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  final TextEditingController textNicController = TextEditingController();
+  final NicController nicController = Get.put(NicController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +22,7 @@ class HomePage extends StatelessWidget {
             ),
           const SizedBox(height: 120.0),
           TextField(
+            controller: textNicController,
             style: Theme.of(context).textTheme.bodySmall,
             decoration: InputDecoration(
               suffixIcon: Icon(Icons.clear_rounded),
@@ -27,7 +32,14 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 20.0),
           ElevatedButton(
             onPressed: () {
-              Get.to(() => const ResultPage());
+              String nicVal = textNicController.text.trim();
+              if (nicVal.isEmpty) {
+                Get.snackbar("Error", "Please Enter a NIC number!");
+                return;
+              }
+
+              nicController.decodeNic(nicVal);
+              Get.to(() => ResultPage());
             },
             child: Text(
               'Decode',
