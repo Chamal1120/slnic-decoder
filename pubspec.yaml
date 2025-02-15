@@ -1,7 +1,7 @@
 name: flutter_nic_decoder
 description: "An app to decode the user info using the NIC number."
 publish_to: 'none'
-version: 0.1.7
+version: 0.1.8
 environment:
   sdk: ^3.6.0
 dependencies:
