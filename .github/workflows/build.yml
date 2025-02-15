@@ -58,6 +58,15 @@ jobs:
           name: app-release-apk
           path: release-assets/
 
+      - name: Extract Latest Changelog
+        run: |
+          FULL_CHANGELOG="CHANGELOG.txt"
+          NEW_CHANGELOG="release-assets/CHANGELOG.txt"
+          NEW_TAG=${{ github.ref_name }}
+          echo "# Changelog" > $NEW_CHANGELOG
+          awk "/## \[$NEW_TAG\]/,/## \[/" $FULL_CHANGELOG | sed '$d' > $NEW_CHANGELOG
+          cat $NEW_CHANGELOG
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -65,6 +74,7 @@ jobs:
             release-assets/nic-app-${{ github.ref_name }}.apk
           draft: false
           prerelease: true
+          body_path:release-assets/CHANGELOG.txt
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_FOR_NIC_DEC }}
 
