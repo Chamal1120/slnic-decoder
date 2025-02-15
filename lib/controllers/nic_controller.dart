@@ -7,15 +7,15 @@ class NicController extends GetxController {
   var isLoading = true.obs;
 
   void decodeNic(String nicVal) {
-    isLoading.value = true;
     String checkString = nicVal;
+    isLoading.value = true;
+    nicInfo.value = null;
 
     if (nicVal.length == 10) {
       checkString = nicVal.substring(0, nicVal.length - 1);
     }
     
     if (int.tryParse(checkString) == null) {
-      Get.snackbar("Error", "Invalid NIC number format");
       isLoading.value = false;
       return;
     }
@@ -26,7 +26,6 @@ class NicController extends GetxController {
     } else if (nicVal.length == 12) {
       nicInfo.value = NicInfo.from12Digit(nicVal);
     } else {
-      Get.snackbar("Error", "Invalid NIC number format");
       isLoading.value = false;
       return;
     }
