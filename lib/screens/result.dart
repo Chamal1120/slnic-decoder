@@ -18,7 +18,28 @@ class ResultPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Icon(
+                Icons.check_circle_outline_rounded,
+                size: 150.0,
+                color: mocha.green,
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Text('Decode Success!'),
+              SizedBox(
+                height: 40.0,
+              ),
               TableCard(),
+              SizedBox(
+                height: 40.0,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Get.back();
+                },
+                child: Text('Go Back'),
+              ),
             ],
           ),
         ),
@@ -27,6 +48,7 @@ class ResultPage extends StatelessWidget {
   }
 }
 
+// Create table widget with result data
 class TableCard extends StatelessWidget {
   TableCard({super.key});
 
@@ -38,10 +60,10 @@ class TableCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         color: theme.cardTheme.color,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
             color: mocha.crust,
@@ -54,9 +76,14 @@ class TableCard extends StatelessWidget {
       // Load the values based on state variables of nicController
       child: Obx(
         () {
+
           if (nicController.isLoading.value) {
-            return const CircularProgressIndicator.adaptive();
+            return SizedBox(
+              height: 400,
+              child: Center(child: CircularProgressIndicator(),),
+            );
           }
+
           final nicInfo = nicController.nicInfo.value;
           return Table(
             columnWidths: {
@@ -68,12 +95,10 @@ class TableCard extends StatelessWidget {
             ),
             children: [
               // Buids rows using BuildTableRow widget
-              _buildTableRow(
-                context, 'Serial No', nicInfo?.serialNo ?? 'N/A'),
+              _buildTableRow(context, 'Serial No', nicInfo?.serialNo ?? 'N/A'),
               _buildTableRow(
                   context, 'Date of Birth', nicInfo?.birthDate ?? 'N/A'),
-              _buildTableRow(
-                context, 'Gender', nicInfo?.gender ?? 'N/A'),
+              _buildTableRow(context, 'Gender', nicInfo?.gender ?? 'N/A'),
               _buildTableRow(
                   context, 'Ability to Vote', nicInfo?.votability ?? 'N/A'),
             ],
