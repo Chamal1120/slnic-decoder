@@ -11,15 +11,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-      Center(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             'NIC Decoder',
             style: Theme.of(context).textTheme.bodyLarge,
-            ),
+          ),
           const SizedBox(height: 120.0),
           TextField(
             controller: textNicController,
@@ -27,14 +26,27 @@ class HomePage extends StatelessWidget {
             decoration: InputDecoration(
               suffixIcon: Icon(Icons.clear_rounded),
               hintText: 'Enter your NIC Number here',
-              ),
             ),
+          ),
           const SizedBox(height: 20.0),
           ElevatedButton(
             onPressed: () {
               String nicVal = textNicController.text.trim();
-              if (nicVal.isEmpty) {
+              String checkString = nicVal;
+
+
+              if (nicVal.length != 10 && nicVal.length != 12) {
+                Get.snackbar("Error", "NIC number entered is wrong length!");
+                return;
+              }
+
+              if (nicVal.length == 10) {
+                checkString = nicVal.substring(0, nicVal.length - 1);
+              } else if (nicVal.isEmpty) {
                 Get.snackbar("Error", "Please Enter a NIC number!");
+                return;
+              } else if (int.tryParse(checkString) == null) {
+                Get.snackbar("Error", "Please Enter a valid NIC number!");
                 return;
               }
 
@@ -43,8 +55,8 @@ class HomePage extends StatelessWidget {
             },
             child: Text(
               'Decode',
-              ),
             ),
+          ),
         ],
       ),
     );
