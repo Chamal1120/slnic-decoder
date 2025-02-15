@@ -72,9 +72,9 @@ jobs:
         with:
           files: |
             release-assets/nic-app-${{ github.ref_name }}.apk
+            release-assets/CHANGELOG.txt
           draft: false
           prerelease: true
-          body_path:release-assets/CHANGELOG.txt
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_FOR_NIC_DEC }}
 
