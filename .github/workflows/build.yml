@@ -60,12 +60,9 @@ jobs:
 
       - name: Extract Latest Changelog
         run: |
-          FULL_CHANGELOG="CHANGELOG.txt"
-          NEW_CHANGELOG="release-assets/CHANGELOG.txt"
           NEW_TAG=${{ github.ref_name }}
           echo "# Changelog" > $NEW_CHANGELOG
-          awk "/## \[$NEW_TAG\]/,/## \[/" $FULL_CHANGELOG | sed '$d' > $NEW_CHANGELOG
-          cat $NEW_CHANGELOG
+          grep -A 10 "## \[$NEW_TAG\]" CHANGELOG.txt | sed '$d' >> release-assets/CHANGELOG.txt
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
