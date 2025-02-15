@@ -8,6 +8,17 @@ class NicController extends GetxController {
 
   void decodeNic(String nicVal) {
     isLoading.value = true;
+    String checkString = nicVal;
+
+    if (nicVal.length == 10) {
+      checkString = nicVal.substring(0, nicVal.length - 1);
+    }
+    
+    if (int.tryParse(checkString) == null) {
+      Get.snackbar("Error", "Invalid NIC number format");
+      isLoading.value = false;
+      return;
+    }
 
     // Check number length and conditionally create proper NicInfo objects
     if (nicVal.length == 10) {
