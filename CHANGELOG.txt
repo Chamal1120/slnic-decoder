@@ -1,5 +1,6 @@
-What's new in 0.1.8?
-====================
-
+## [v0.8.0] - 2025-02-16
 - Added adaptive icon and themed for android.
 - Added and passed tests for the main functionalities.
+
+## [v0.7.0] - 2025-02-16
+- Initial release of the app.
