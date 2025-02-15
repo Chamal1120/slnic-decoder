@@ -61,7 +61,7 @@ jobs:
       - name: Extract Latest Changelog
         run: |
           NEW_TAG=${{ github.ref_name }}
-          echo "# Changelog" > $NEW_CHANGELOG
+          echo "# Changelog" > release-assets/CHANGELOG.txt
           grep -A 10 "## \[$NEW_TAG\]" CHANGELOG.txt | sed '$d' >> release-assets/CHANGELOG.txt
 
       - name: Create GitHub Release
