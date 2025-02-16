@@ -18,9 +18,6 @@ jobs:
           channel: stable
           flutter-version: 3.27.0
       - name: Check Flutter and Dart versions
-        run: |
-          flutter --version
-          dart --version
       - name: Install dependencies
         run: flutter pub get
       - name: Build APK
@@ -39,20 +36,28 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Install dependencies
+        run: sudo apt-get install -y ruby ruby-dev && gem install github_changelog_generator
       - name: Download APK artifact
         uses: actions/download-artifact@v4
         with:
           name: app-release-apk
           path: release-assets/
-      - name: Update CHANGELOG
-        id: changelog
-        uses: requarks/changelog-action@v1
-        with:
-          token: ${{ secrets.PAT_FOR_NIC_DEC }}
-          tag: ${{ github.ref_name }}
-
+      - name: Generate Release Notes with GitHub Changelog Generator
+        run: |
+          github_changelog_generator \
+            --user ${{ github.repository_owner }} \
+            --project $(basename ${{ github.repository }}) \
+            --token ${{ secrets.PAT_FOR_NIC_DEC }} \
+            --output release-notes.md \
+            --header-label "🚀 **Latest Release: ${{ github.ref_name }}**" \
+            --breaking-label "**💥 Breaking Changes:**" \
+            --enhancement-label "**✨ Enhancements:**" \
+            --bug-label "**🐛 Bug Fixes:**" \
+            --issues-label "**📋 Other Changes:**" \
+            --exclude-labels "skip-changelog,duplicate,invalid,wontfix" \
+            --pull-requests \
+            --verbose
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
         with:
@@ -60,15 +65,7 @@ jobs:
           draft: false
           makeLatest: true
           prerelease: true
-          files: |
-            release-assets/nic-app-${{ github.ref_name }}.apk
+          artifacts: release-assets/
           name: ${{ github.ref_name }}
-          body: ${{ steps.changelog.outputs.changes }}
+          bodyFile: release-notes.md
           token: ${{ secrets.PAT_FOR_NIC_DEC }}
-
-      - name: Commit CHANGELOG.md
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          branch: main
-          commit_message: 'docs: update CHANGELOG.md for ${{ github.ref_name }} [skip ci]'
-          file_pattern: CHANGELOG.md
