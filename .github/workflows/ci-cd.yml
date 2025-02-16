@@ -1,14 +1,27 @@
-name: Builds
+name: CI/CD
 on:
-  workflow_run:
-    workflows: ["Tests"]
-    types:
-      - completed
-      - success
+  push:
+    tags:
+      - 'v*'
 permissions:
   contents: write
   discussions: write
 jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.27.0
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Run tests
+        run: flutter test
   build:
     name: Build APK
     runs-on: ubuntu-latest
