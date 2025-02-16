@@ -35,32 +35,26 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Install dependencies
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+      - name: Install github-release-notes
         run: |
-          sudo apt-get install -y ruby ruby-dev
-          gem install github_changelog_generator --user-install
-          echo "Adding gem executables to PATH"
-          export PATH="$HOME/.gem/ruby/$(ruby -e 'print RUBY_VERSION.split(".").first(2).join(".")')/bin:$PATH"
+          npm install -g github-release-notes
+      - name: Generate Release Notes with github-release-notes
+        run: |
+          github-release-notes \
+            --user ${{ github.repository_owner }} \
+            --repo $(basename ${{ github.repository }}) \
+            --token ${{ secrets.PAT_FOR_NIC_DEC }} \
+            --since-tag ${{ github.ref_name }} \
+            --output release-notes.md
       - name: Download APK artifact
         uses: actions/download-artifact@v4
         with:
           name: app-release-apk
           path: release-assets/
-      - name: Generate Release Notes with GitHub Changelog Generator
-        run: |
-          github_changelog_generator \
-            --user ${{ github.repository_owner }} \
-            --project $(basename ${{ github.repository }}) \
-            --token ${{ secrets.PAT_FOR_NIC_DEC }} \
-            --output release-notes.md \
-            --header-label "🚀 **Latest Release: ${{ github.ref_name }}**" \
-            --breaking-label "**💥 Breaking Changes:**" \
-            --enhancement-label "**✨ Enhancements:**" \
-            --bug-label "**🐛 Bug Fixes:**" \
-            --issues-label "**📋 Other Changes:**" \
-            --exclude-labels "skip-changelog,duplicate,invalid,wontfix" \
-            --pull-requests \
-            --verbose
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
         with:
