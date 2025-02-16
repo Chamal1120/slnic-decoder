@@ -60,15 +60,19 @@ jobs:
 
       - name: Extract Latest Changelog
         run: |
-          echo "NEW_TAG=${{ github.ref_name }}" >> $GITHUB_ENV
+          echo "NEW_TAG=${{ github.ref_name }}" >> $GITHUB_ENV  # Set NEW_TAG in $GITHUB_ENV
           echo "# What's new?" > release-assets/CHANGELOG.md
+          echo "NEW_TAG=${{ github.ref_name }}"  # Debugging: print the NEW_TAG to make sure it's correct
           awk '
             $0 ~ "## \\[" ENVIRON["NEW_TAG"] "\\]" {flag=1; next}  # Escape the square brackets in the regex
             flag && /^## \[/ {exit}
             flag
-          ' NEW_TAG="$NEW_TAG" CHANGELOG.md >> release-assets/CHANGELOG.md
+          ' CHANGELOG.md >> release-assets/CHANGELOG.md
           echo "Generated changelog for ${NEW_TAG}:"
           cat release-assets/CHANGELOG.md
+        env:
+          NEW_TAG: ${{ github.ref_name }}  # Set the environment variable for the run step
+
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

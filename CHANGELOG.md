@@ -1,6 +1,9 @@
-## [v0.1.11+4] - 2025-02-16
+## [v0.1.11+5] - 2025-02-16
 - Added adaptive icon and themed for android.
 - Added and passed tests for the main functionalities.
+
+## [v0.1.11+4] - 2025-02-16
+- No changes, just a version bump.
 
 ## [v0.1.11+3] - 2025-02-16
 - No changes, just a version bump.
