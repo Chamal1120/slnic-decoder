@@ -50,7 +50,7 @@ jobs:
         id: changelog
         uses: requarks/changelog-action@v1
         with:
-          token: ${{ github.PAT_FOR_NIC_DEC }}
+          token: ${{ secrets.PAT_FOR_NIC_DEC }}
           tag: ${{ github.ref_name }}
 
       - name: Create Release
@@ -64,7 +64,7 @@ jobs:
             release-assets/nic-app-${{ github.ref_name }}.apk
           name: ${{ github.ref_name }}
           body: ${{ steps.changelog.outputs.changes }}
-          token: ${{ github.PAT_FOR_NIC_DEC }}
+          token: ${{ secrets.PAT_FOR_NIC_DEC }}
 
       - name: Commit CHANGELOG.md
         uses: stefanzweifel/git-auto-commit-action@v4
