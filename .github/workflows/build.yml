@@ -11,7 +11,7 @@ permissions:
 jobs:
   build:
     name: Build Flutter APK
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout repository
@@ -46,7 +46,7 @@ jobs:
   release:
     name: Create GitHub Release
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout repository
@@ -60,9 +60,13 @@ jobs:
 
       - name: Extract Latest Changelog
         run: |
-          NEW_TAG=${{ github.ref_name }}
-          echo "# Changelog" > release-assets/CHANGELOG.txt
-          grep -A 10 "## \[$NEW_TAG\]" CHANGELOG.txt | sed '$d' >> release-assets/CHANGELOG.txt
+          echo "NEW_TAG=${{ github.ref_name }}" >> $GITHUB_ENV
+          echo "# What's new?" > release-assets/CHANGELOG.md
+          awk '
+            $0 ~ "## \\[" ENVIRON["NEW_TAG"] "\\]" {flag=1; next}  # Escape the square brackets in the regex
+            flag && /^## \[/ {exit}
+            flag
+          ' NEW_TAG="$NEW_TAG" CHANGELOG.md >> release-assets/CHANGELOG.md
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
