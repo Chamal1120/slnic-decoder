@@ -58,35 +58,31 @@ jobs:
           name: app-release-apk
           path: release-assets/
 
-      - name: Generate Changelog for current tag
+      - name: Create changelog text
+        id: changelog
+        uses: loopwerk/tag-changelog@v1
+        with:
+          token: ${{ secrets.PAT_FOR_NIC_DEC }}
+          config_file: .github/tag-changelog-config.js
+
+      - name: Prepend changelog to CHANGELOG.md
         run: |
-          NEW_TAG=${{ github.ref_name }}
-          ALL_TAGS=$(git tag -l | sort -V)
-          INDEX=$(echo "$ALL_TAGS" | grep -n "^$NEW_TAG$" | cut -d: -f1)
-          PREVIOUS_TAG=$(echo "$ALL_TAGS" | sed -n "$((INDEX-1))p")
+          echo -e "## ${{ github.ref }}\n\n${{ steps.changelog.outputs.changelog }}\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
 
-          # Output the tags for debugging
-          echo "All tags: $ALL_TAGS"
-          echo "Previous tag: $PREVIOUS_TAG"
-          echo "New tag: $NEW_TAG"
-
-          echo "# What's Changed" > release-assets/CHANGELOG.md
-          echo "## New features 🚀" >> release-assets/CHANGELOG.md
-          git log --pretty=format:"- %s" --no-merges --grep="^feat:" "$PREVIOUS_TAG".."$NEW_TAG" >> release-assets/CHANGELOG.md
-          echo "## Bug fixes 🐛" >> release-assets/CHANGELOG.md
-          git log --pretty=format:"- %s" --no-merges --grep="^fix:" "$PREVIOUS_TAG".."$NEW_TAG" >> release-assets/CHANGELOG.md
-
-          echo "Generated changelog for ${NEW_TAG}:"
-          cat release-assets/CHANGELOG.md
-
-          echo "## [${NEW_TAG}] - $(date +'%Y-%m-%d')" >> $CHANGELOG_PATH
-          cat release-assets/CHANGELOG.md >> $CHANGELOG_PATH
-          echo "" >> $CHANGELOG_PATH
+      - name: Commit and push updated CHANGELOG.md
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git commit -m "Update CHANGELOG for ${{ github.ref }}"
+          git push
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          body_path: release-assets/CHANGELOG.md
+          tag_name: ${{ github.ref }}
+          name: Release ${{ github.ref }}
+          body: ${{ steps.changelog.outputs.changes }}
           files: |
             release-assets/nic-app-${{ github.ref_name }}.apk
           draft: false
