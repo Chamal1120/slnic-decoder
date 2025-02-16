@@ -60,17 +60,9 @@ jobs:
 
       - name: Generate Changelog for current tag
         run: |
-
-           # Define the current tag
           NEW_TAG=${{ github.ref_name }}
-
-          # Fetch all tags and sort them
           ALL_TAGS=$(git tag -l | sort -V)
-
-          # Find the index of the current tag in the sorted list
           INDEX=$(echo "$ALL_TAGS" | grep -n "^$NEW_TAG$" | cut -d: -f1)
-
-          # Get the previous tag by picking the tag just before the current tag
           PREVIOUS_TAG=$(echo "$ALL_TAGS" | sed -n "$((INDEX-1))p")
 
           # Output the tags for debugging
@@ -78,28 +70,18 @@ jobs:
           echo "Previous tag: $PREVIOUS_TAG"
           echo "New tag: $NEW_TAG"
 
-          # Set the path for the changelog file
-          CHANGELOG_PATH="CHANGELOG.md"
-          
-          # Prepare the temporary changelog file for the release
           echo "# What's Changed" > release-assets/CHANGELOG.md
-
-          # Extract the commits related to the current tag
           echo "## New features 🚀" >> release-assets/CHANGELOG.md
           git log --pretty=format:"- %s" --no-merges --grep="^feat:" "$PREVIOUS_TAG".."$NEW_TAG" >> release-assets/CHANGELOG.md
-          
           echo "## Bug fixes 🐛" >> release-assets/CHANGELOG.md
           git log --pretty=format:"- %s" --no-merges --grep="^fix:" "$PREVIOUS_TAG".."$NEW_TAG" >> release-assets/CHANGELOG.md
 
-          # Check if the generated changelog content is correct
           echo "Generated changelog for ${NEW_TAG}:"
           cat release-assets/CHANGELOG.md
 
-          # Append the changes to the root CHANGELOG.md
           echo "## [${NEW_TAG}] - $(date +'%Y-%m-%d')" >> $CHANGELOG_PATH
           cat release-assets/CHANGELOG.md >> $CHANGELOG_PATH
           echo "" >> $CHANGELOG_PATH
-
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
