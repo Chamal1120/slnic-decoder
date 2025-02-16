@@ -67,11 +67,13 @@ jobs:
             flag && /^## \[/ {exit}
             flag
           ' NEW_TAG="$NEW_TAG" CHANGELOG.md >> release-assets/CHANGELOG.md
+          echo "Generated changelog for ${NEW_TAG}:"
+          cat release-assets/CHANGELOG.md
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          body_path: release-assets/CHANGELOG.txt
+          body_path: release-assets/CHANGELOG.md
           files: |
             release-assets/nic-app-${{ github.ref_name }}.apk
           draft: false
