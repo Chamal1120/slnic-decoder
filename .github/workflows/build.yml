@@ -3,6 +3,7 @@ on:
   workflow_run:
     workflows: ["Tests"]
     types:
+      - completed
       - success
 permissions:
   contents: write
