@@ -27,9 +27,4 @@ module.exports = {
 
     return text;
   },
-
-  renderChangelog: function (release, changes) {
-    const now = new Date();
-    return `# ${release} - ${now.toISOString().substr(0, 10)}\n` + changes + "\n\n";
-  },
 };
