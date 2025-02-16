@@ -73,9 +73,11 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout main  # Ensure you're on the main branch (change if needed)
+          git pull origin main  # Pull latest changes to avoid conflicts
           git add CHANGELOG.md
           git commit -m "Update CHANGELOG for ${{ github.ref }}"
-          git push
+          git push origin main
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
