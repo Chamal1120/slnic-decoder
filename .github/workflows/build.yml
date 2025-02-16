@@ -5,6 +5,7 @@ on:
       - 'v*'
 permissions:
   contents: write
+  discussions: write
 jobs:
   build:
     name: Build Flutter APK
@@ -35,34 +36,19 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '20'
-      - name: Install github-release-notes
-        run: |
-          npm install -g github-release-notes
-      - name: Generate Release Notes with github-release-notes
-        run: |
-          github-release-notes \
-            --user ${{ github.repository_owner }} \
-            --repo $(basename ${{ github.repository }}) \
-            --token ${{ secrets.PAT_FOR_NIC_DEC }} \
-            --since-tag ${{ github.ref_name }} \
-            --output release-notes.md
       - name: Download APK artifact
         uses: actions/download-artifact@v4
         with:
           name: app-release-apk
           path: release-assets/
-      - name: Create Release
-        uses: ncipollo/release-action@v1.12.0
+      - name: Create Release with Release Notes
+        uses: action-create-release@v1
         with:
-          allowUpdates: true
-          draft: false
-          makeLatest: true
-          prerelease: true
-          artifacts: release-assets/
-          name: ${{ github.ref_name }}
-          bodyFile: release-notes.md
-          token: ${{ secrets.PAT_FOR_NIC_DEC }}
+          tag: ${{ github.ref_name }}
+          generate-release-notes: true
+          files: release-assets/nic-app-${{ github.ref_name }}.apk
+          token: ${{ secrets.PATPAT_FOR_NIC_DEC }}
+      - name: Upload Release Notes (Optional)
+        if: ${{ success() }}
+        run: |
+          echo "Release notes generated and release created."
