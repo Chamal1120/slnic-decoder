@@ -41,14 +41,36 @@ jobs:
         with:
           name: app-release-apk
           path: release-assets/
-      - name: Create Release with Release Notes
-        uses: action-create-release@v1
-        with:
-          tag: ${{ github.ref_name }}
-          generate-release-notes: true
-          files: release-assets/nic-app-${{ github.ref_name }}.apk
-          token: ${{ secrets.PATPAT_FOR_NIC_DEC }}
-      - name: Upload Release Notes (Optional)
-        if: ${{ success() }}
+      - name: Generate Release Notes
         run: |
-          echo "Release notes generated and release created."
+          PREV_TAG=$(git tag --sort=-v:refname | sed -n 2p)
+          CURR_TAG=${{ github.ref_name }}
+          RELEASE_NOTES="release-assets/release-notes.md"
+
+          echo "# What's new?" > $RELEASE_NOTES
+
+          if [ -z "$PREV_TAG" ]; then
+            COMMITS=$(git log --pretty=format:"%s")
+          else
+            COMMITS=$(git log --pretty=format:"%s" $PREV_TAG..$CURR_TAG)
+          fi
+
+          FEATURES=$(echo "$COMMITS" | grep -iE "^feat: " | sed 's/^feat: //')
+          FIXES=$(echo "$COMMITS" | grep -iE "^fix: " | sed 's/^fix: //')
+
+          if [ -n "$FEATURES" ]; then
+            echo -e "\n## Features" >> $RELEASE_NOTES
+            echo "$FEATURES" | while read -r line; do echo "- $line"; done >> $RELEASE_NOTES
+          fi
+
+          if [ -n "$FIXES" ]; then
+            echo -e "\n## Fixes" >> $RELEASE_NOTES
+            echo "$FIXES" | while read -r line; do echo "- $line"; done >> $RELEASE_NOTES
+          fi
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body_path: release-assets/release-notes.md
+          files: release-assets/nic-app-${{ github.ref_name }}.apk
