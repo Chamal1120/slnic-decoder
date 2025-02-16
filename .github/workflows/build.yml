@@ -36,7 +36,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Install dependencies
-        run: sudo apt-get install -y ruby ruby-dev && gem install github_changelog_generator --user-install
+        run: |
+        sudo apt-get install -y ruby ruby-dev
+        gem install github_changelog_generator --user-install
+        echo "Adding gem executables to PATH"
+        export PATH="$HOME/.gem/ruby/3.2.0/bin:$PATH"
       - name: Download APK artifact
         uses: actions/download-artifact@v4
         with:
