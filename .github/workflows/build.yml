@@ -58,21 +58,35 @@ jobs:
           name: app-release-apk
           path: release-assets/
 
-      - name: Extract Latest Changelog
+      - name: Generate Changelog for current tag
         run: |
-          echo "NEW_TAG=${{ github.ref_name }}" >> $GITHUB_ENV  # Set NEW_TAG in $GITHUB_ENV
-          echo "# What's new?" > release-assets/CHANGELOG.md
-          echo "NEW_TAG=${{ github.ref_name }}"  # Debugging: print the NEW_TAG to make sure it's correct
-          awk '
-            $0 ~ "## \\[" ENVIRON["NEW_TAG"] "\\]" {flag=1; next}  # Escape the square brackets in the regex
-            flag && /^## \[/ {exit}
-            flag
-          ' CHANGELOG.md >> release-assets/CHANGELOG.md
+          # Define current tag
+          NEW_TAG=${{ github.ref_name }}
+
+          # Get the previous tag (the tag before the current tag)
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 $NEW_TAG^)
+
+          # Set the path for the changelog file
+          CHANGELOG_PATH="CHANGELOG.md"
+          
+          # Prepare the temporary changelog file for the release
+          echo "# What's Changed" > release-assets/CHANGELOG.md
+
+          # Extract the commits related to the current tag
+          echo "## New features 🚀" >> release-assets/CHANGELOG.md
+          git log --pretty=format:"- %s" --no-merges --grep="^feat:" $PREVIOUS_TAG..$NEW_TAG >> release-assets/CHANGELOG.md
+          
+          echo "## Bug fixes 🐛" >> release-assets/CHANGELOG.md
+          git log --pretty=format:"- %s" --no-merges --grep="^fix:" $PREVIOUS_TAG..$NEW_TAG >> release-assets/CHANGELOG.md
+
+          # Check if the generated changelog content is correct
           echo "Generated changelog for ${NEW_TAG}:"
           cat release-assets/CHANGELOG.md
-        env:
-          NEW_TAG: ${{ github.ref_name }}  # Set the environment variable for the run step
 
+          # Append the changes to the root CHANGELOG.md
+          echo "## [${NEW_TAG}] - $(date +'%Y-%m-%d')" >> $CHANGELOG_PATH
+          cat release-assets/CHANGELOG.md >> $CHANGELOG_PATH
+          echo "" >> $CHANGELOG_PATH
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
