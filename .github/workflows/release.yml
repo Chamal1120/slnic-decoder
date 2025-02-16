@@ -9,10 +9,8 @@ permissions:
   contents: write
   discussions: write
 jobs:
-  # Create GitHub release and update Changelog.md
   release:
     name: Create GitHub Release
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

@@ -9,7 +9,6 @@ permissions:
   contents: write
   discussions: write
 jobs:
-  # Build APK and upload as artifact
   build:
     name: Build APK
     runs-on: ubuntu-latest
