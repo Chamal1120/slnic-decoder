@@ -60,18 +60,23 @@ jobs:
 
       - name: Generate Changelog for current tag
         run: |
-          # Define current tag
-          NEW_TAG=${{ github.ref_name }}  # Get the tag name directly from GitHub Actions
 
-          # Fetch all tags to ensure the latest ones are available
-          git fetch --tags
+           # Define the current tag
+          NEW_TAG=${{ github.ref_name }}
 
-          # Get the previous tag (the tag before the current tag)
-          PREVIOUS_TAG=$(git tag --sort=-creatordate | grep -B 1 "$NEW_TAG" | head -n 1)
+          # Fetch all tags and sort them
+          ALL_TAGS=$(git tag -l | sort -V)
 
-          # Check if the tags are correct
-          echo "Previous Tag: $PREVIOUS_TAG"
-          echo "New Tag: $NEW_TAG"
+          # Find the index of the current tag in the sorted list
+          INDEX=$(echo "$ALL_TAGS" | grep -n "^$NEW_TAG$" | cut -d: -f1)
+
+          # Get the previous tag by picking the tag just before the current tag
+          PREVIOUS_TAG=$(echo "$ALL_TAGS" | sed -n "$((INDEX-1))p")
+
+          # Output the tags for debugging
+          echo "All tags: $ALL_TAGS"
+          echo "Previous tag: $PREVIOUS_TAG"
+          echo "New tag: $NEW_TAG"
 
           # Set the path for the changelog file
           CHANGELOG_PATH="CHANGELOG.md"
