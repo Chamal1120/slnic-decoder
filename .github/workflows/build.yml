@@ -61,10 +61,17 @@ jobs:
       - name: Generate Changelog for current tag
         run: |
           # Define current tag
-          NEW_TAG=${{ github.ref_name }}
+          NEW_TAG=${{ github.ref_name }}  # Get the tag name directly from GitHub Actions
+
+          # Fetch all tags to ensure the latest ones are available
+          git fetch --tags
 
           # Get the previous tag (the tag before the current tag)
-          PREVIOUS_TAG=$(git describe --tags --abbrev=0 $NEW_TAG^)
+          PREVIOUS_TAG=$(git tag --sort=-creatordate | grep -B 1 "$NEW_TAG" | head -n 1)
+
+          # Check if the tags are correct
+          echo "Previous Tag: $PREVIOUS_TAG"
+          echo "New Tag: $NEW_TAG"
 
           # Set the path for the changelog file
           CHANGELOG_PATH="CHANGELOG.md"
@@ -74,10 +81,10 @@ jobs:
 
           # Extract the commits related to the current tag
           echo "## New features 🚀" >> release-assets/CHANGELOG.md
-          git log --pretty=format:"- %s" --no-merges --grep="^feat:" $PREVIOUS_TAG..$NEW_TAG >> release-assets/CHANGELOG.md
+          git log --pretty=format:"- %s" --no-merges --grep="^feat:" "$PREVIOUS_TAG".."$NEW_TAG" >> release-assets/CHANGELOG.md
           
           echo "## Bug fixes 🐛" >> release-assets/CHANGELOG.md
-          git log --pretty=format:"- %s" --no-merges --grep="^fix:" $PREVIOUS_TAG..$NEW_TAG >> release-assets/CHANGELOG.md
+          git log --pretty=format:"- %s" --no-merges --grep="^fix:" "$PREVIOUS_TAG".."$NEW_TAG" >> release-assets/CHANGELOG.md
 
           # Check if the generated changelog content is correct
           echo "Generated changelog for ${NEW_TAG}:"
@@ -87,6 +94,7 @@ jobs:
           echo "## [${NEW_TAG}] - $(date +'%Y-%m-%d')" >> $CHANGELOG_PATH
           cat release-assets/CHANGELOG.md >> $CHANGELOG_PATH
           echo "" >> $CHANGELOG_PATH
+
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
