@@ -6,11 +6,12 @@ import 'package:flutter_nic_decoder/screens/home.dart';
 import 'package:flutter_nic_decoder/screens/about.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const NICApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// Main App (root widget)
+class NICApp extends StatelessWidget {
+  const NICApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,24 +19,32 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter NIC Decoder',
       darkTheme: darkCatppuccinTheme,
+      /* 
+      Enanble dark mode by default 
+      (for now till the theme switcher is implemented) 
+      */
       themeMode: ThemeMode.dark,
       home: NavBarM3(),
     );
   }
 }
 
-// Navigation Bar with Material 3
+// Navigation Bar
 class NavBarM3 extends StatelessWidget {
   NavBarM3({super.key});
 
   final List<Widget> pages = [HomePage(), AboutPage()];
-
   final NavController navController = Get.put(NavController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /*
+      Wrap with Obx widget to update to make the NavigationBar 
+      reactive to navController
+      */
       bottomNavigationBar: Obx(
+        // Update the NavigationBar based on the selected page
         () {
           return NavigationBar(
             onDestinationSelected: (int index) {
@@ -55,6 +64,8 @@ class NavBarM3 extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: catppuccinMochaGradient,
         ),
+
+        // Update the body based on the selected page
         child: Obx(
           () {
             return Padding(
