@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_nic_decoder/controllers/nic_controller.dart';
-import 'package:flutter_nic_decoder/models/nic_info.dart';
 
 void main() {
   late NicController nicController;
