@@ -13,6 +13,11 @@ final ThemeData darkCatppuccinTheme = ThemeData(
   ),
 
   textTheme: TextTheme(
+    labelMedium: TextStyle(
+      color: mocha.text,
+      fontSize: 16.0,
+      fontWeight: FontWeight.w500,
+    ),
     bodyLarge: TextStyle(
       color: mocha.yellow,
       fontSize: 40.0,
@@ -40,29 +45,26 @@ final ThemeData darkCatppuccinTheme = ThemeData(
 
   // Define table border theme
   dividerColor: mocha.crust,
+
   elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ButtonStyle(
-      textStyle: WidgetStateProperty.all(
-        TextStyle(
-          color: mocha.text,
-          fontSize: 12.0,
-        ),
+    style: ElevatedButton.styleFrom(
+      foregroundColor: mocha.crust,
+      backgroundColor: mocha.yellow,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
       ),
-      backgroundColor: WidgetStateProperty.resolveWith(
-        (Set<WidgetState> states) {
-          if (states.contains(WidgetState.pressed)) {
-            return mocha.yellow;
-          }
-          return mocha.yellow;
-        },
+      padding: EdgeInsets.symmetric(
+        horizontal: 18.0,
+        vertical: 12.0,
       ),
-      shape: WidgetStateProperty.all(
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
+      textStyle: TextStyle(
+        fontSize: 13.0,
+        fontWeight: FontWeight.w500,
       ),
     ),
   ),
+
+  textSelectionTheme: TextSelectionThemeData(cursorColor: mocha.text),
 
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
@@ -70,6 +72,7 @@ final ThemeData darkCatppuccinTheme = ThemeData(
     hintStyle: TextStyle(
       color: mocha.subtext0,
       fontSize: 12.0,
+      fontWeight: FontWeight.w400,
     ),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10.0),
