@@ -4,4 +4,8 @@
 ## Fixes
 - another fix to CHANGELOG update issue
 
-## refs/tags/v0.1.11+12
+## v0.1.1+8
+# What's new?
+
+## Fixes
+- CHANGELOG should update from now on
