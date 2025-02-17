@@ -23,7 +23,8 @@ class HomePage extends StatelessWidget {
           TextField(
             // Define the controller for the TextField
             controller: textNicController,
-            style: Theme.of(context).textTheme.bodySmall,
+            style: Theme.of(context).textTheme.labelMedium,
+            textAlign: TextAlign.center,
             decoration: InputDecoration(
               suffixIcon: Icon(Icons.clear_rounded),
               hintText: 'Enter your NIC Number here',
