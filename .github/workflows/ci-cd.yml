@@ -37,7 +37,7 @@ jobs:
       - name: Generate Badge
         if: success()
         run: |
-          BADGE_URL="https://img.shields.io/badge/Test-${{ env.TEST_STATUS }}-${{ env.BADGE_COLOR }}?style=for-the-badge"
+          BADGE_URL="https://img.shields.io/badge/Tests-${{ env.TEST_STATUS }}-${{ env.BADGE_COLOR }}?style=for-the-badge"
           curl -o test-status.svg "$BADGE_URL"
       - name: Commit and Push Badge
         if: success()
@@ -90,6 +90,7 @@ jobs:
       - name: Commit and Push Build Badge
         if: success()
         run: |
+          git pull
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           mv build-status.svg .github/build-status.svg
