@@ -168,4 +168,4 @@ jobs:
 
           mv "$TEMP_FILE" "$CHANGELOG_FILE"
       - name: Commit and push updated CHANGELOG.md
-        run: "git config --global user.name \"github-actions[bot]\"\ngit config --global user.email \"github-actions[bot]@users.noreply.github.com\"\ngit add CHANGELOG.md\ngit commit -m \"Update CHANGELOG for ${{ github.ref_name }}\"\ngit push origin HEAD:refs/heads/main \n"
+        run: "git config --global user.name \"github-actions[bot]\"\ngit config --global user.email \"github-actions[bot]@users.noreply.github.com\"\ngit add CHANGELOG.md\ngit commit -m \"docs: Update CHANGELOG for ${{ github.ref_name }}\"\ngit push origin HEAD:refs/heads/main \n"
