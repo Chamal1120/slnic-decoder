@@ -1,3 +1,5 @@
+[![CI/CD](https://github.com/Chamal1120/flutter_nic_decoder/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Chamal1120/flutter_nic_decoder/actions/workflows/ci-cd.yml)
+
 # SLNIC Decoder
 
 This is a flutter app to decode the Sri Lanka NIC (National Identity Card) number, developed as the final project for the CCS3351 Mobile Application Development module of University.
@@ -22,9 +24,9 @@ This is a flutter app to decode the Sri Lanka NIC (National Identity Card) numbe
 
 # Installation
 
-1. Grab the latest apk from ***[releases](https://github.com/Chamal1120/flutter_nic_decoder/releases)***
-2. Enable apk sideloading on your device
-3. Navigate to the download directory and tap on the nic-app-v.x.x.x.apk file and follow the instructions
+1. Grab the latest apk from ***[releases](https://github.com/Chamal1120/flutter_nic_decoder/releases)***.
+2. Enable apk sideloading on your device.
+3. Navigate to the download directory and tap on the nic-app-v.x.x.x.apk file and follow the instructions.
 
 > [!NOTE]
 > As of now, installation packages are only avaible for android devices. If you wish to use this app on an iOS device, you will have to compile it from source. See [Compile from source](#compile-from-source) for more information.
@@ -37,7 +39,6 @@ This is a flutter app to decode the Sri Lanka NIC (National Identity Card) numbe
 
 1. Flutter SDK 3.6.0 or above
 2. Android studio
-
 
 ## Steps
 
@@ -68,13 +69,13 @@ flutter build ios --release # For ios
 ## Prerequisites
 
 1. Flutter SDK 3.6.0 or above
-2. Android Studio
-3. Code editor that supports Flutter Development (ex: VsCode, Android Studio's Editor, Neovim)
-4. Emulator configured through Android studio or AVD Manager (Physical device with ADB enabled works too but not recommended)
+2. Android Studio Latest
+3. Code editor that supports Flutter Development (VS Code, Android Studio, etc.)
+4. Emulator configured through Android studio or AVD Manager (or a physical device)
 
 ## Steps
 
-1. Follow step 1 and 2 from [Compile from source](#compile-from-source)
+1. Follow step 1 and 2 from [compile from source](#compile-from-source).
 2. Run the emulator or connect your physical device:
 
 ```bash
@@ -88,8 +89,10 @@ flutter emulators --launch <emulator_name> # To launch an emulator
 flutter run
 ```
 
-4. Open up **lib** folder (where most of the code lives) and start developing
+4. Open up **lib** folder (where most of the code lives) and start developing.
 
 ---
 
 # Thank You
+
+Thank you for using the SLNIC Decoder app. If you have any issues or suggestions, please feel free to open an issue.
