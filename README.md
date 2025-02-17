@@ -1,4 +1,5 @@
-[![CI/CD](https://github.com/Chamal1120/flutter_nic_decoder/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Chamal1120/flutter_nic_decoder/actions/workflows/ci-cd.yml)
+![Test Status](.github/test-status.svg)
+![Build Status](.github/build-status.svg)
 
 # SLNIC Decoder
 
