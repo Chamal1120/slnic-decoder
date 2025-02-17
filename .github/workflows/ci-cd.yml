@@ -51,6 +51,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
       - name: Download APK artifact
         uses: actions/download-artifact@v4
         with:
@@ -94,7 +97,7 @@ jobs:
           files: release-assets/nic-app-${{ github.ref_name }}.apk
       - name: Update Changelog.md
         run: |
-          CHANGELOG_FILE="Changelog.md"
+          CHANGELOG_FILE="CHANGELOG.md"
           RELEASE_NOTES="release-assets/release-notes.md"
           TEMP_FILE="Changelog_temp.md"
 
