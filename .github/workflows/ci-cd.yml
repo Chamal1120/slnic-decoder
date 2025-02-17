@@ -95,11 +95,11 @@ jobs:
           name: ${{ github.ref_name }}
           body_path: release-assets/release-notes.md
           files: release-assets/nic-app-${{ github.ref_name }}.apk
-      - name: Update Changelog.md
+      - name: Update CHANGELOG.md
         run: |
           CHANGELOG_FILE="CHANGELOG.md"
           RELEASE_NOTES="release-assets/release-notes.md"
-          TEMP_FILE="Changelog_temp.md"
+          TEMP_FILE="CHANGELOG_TEMP.md"
 
           # Create Changelog.md if it doesn't exist
           if [ ! -f "$CHANGELOG_FILE" ]; then
@@ -115,10 +115,10 @@ jobs:
           } > "$TEMP_FILE"
 
           mv "$TEMP_FILE" "$CHANGELOG_FILE"
-      - name: Commit and push updated Changelog.md
+      - name: Commit and push updated CHANGELOG.md
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add Changelog.md
+          git add CHANGELOG.md
           git commit -m "Update Changelog for ${{ github.ref_name }}"
           git push origin main
