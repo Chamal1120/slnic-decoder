@@ -37,17 +37,18 @@ jobs:
       - name: Generate Badge
         if: success()
         run: |
-          BADGE_URL="https://img.shields.io/badge/Tests-${{ env.TEST_STATUS }}-${{ env.BADGE_COLOR }}?style=for-the-badge"
+          BADGE_URL="https://img.shields.io/badge/Tests-${{ env.TEST_STATUS }}-${{ env.BADGE_COLOR }}?style=for-the-badge&logo=testcafe"
           curl -o test-status.svg "$BADGE_URL"
       - name: Commit and Push Badge
         if: success()
         run: |
+          git pull --rebase origin main
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          mv test-status.svg .github/test-status.svg
-          git add .github/test-status.svg
-          git commit -m "Update test status badge"
-          git push origin HEAD:refs/heads/main
+          mv test-status.svg .github/assets/test-status.svg
+          git add .github/assets/test-status.svg
+          git commit -m "ci/cd: Update test status badge"
+          git push origin main
   build:
     name: Build APK
     runs-on: ubuntu-latest
@@ -85,18 +86,18 @@ jobs:
       - name: Generate Build Badge
         if: success()
         run: |
-          BADGE_URL="https://img.shields.io/badge/Builds-${{ env.BUILD_STATUS }}-${{ env.BADGE_COLOR }}?style=for-the-badge"
+          BADGE_URL="https://img.shields.io/badge/Builds-${{ env.BUILD_STATUS }}-${{ env.BADGE_COLOR }}?style=for-the-badge&logo=androidstudio"
           curl -o build-status.svg "$BADGE_URL"
       - name: Commit and Push Build Badge
         if: success()
         run: |
-          git pull
+          git pull --rebase origin main
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          mv build-status.svg .github/build-status.svg
-          git add .github/build-status.svg
-          git commit -m "Update build status badge"
-          git push origin HEAD:refs/heads/main
+          mv build-status.svg .github/assets/build-status.svg
+          git add .github/assets/build-status.svg
+          git commit -m "ci/cd: Update build status badge"
+          git push origin main
   release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
@@ -169,4 +170,10 @@ jobs:
 
           mv "$TEMP_FILE" "$CHANGELOG_FILE"
       - name: Commit and push updated CHANGELOG.md
-        run: "git config --global user.name \"github-actions[bot]\"\ngit config --global user.email \"github-actions[bot]@users.noreply.github.com\"\ngit add CHANGELOG.md\ngit commit -m \"docs: Update CHANGELOG for ${{ github.ref_name }}\"\ngit push origin HEAD:refs/heads/main \n"
+        run: |
+          git pull --rebase origin main
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git commit -m "docs: Update CHANGELOG for ${{ github.ref_name }}"
+          git push origin main
