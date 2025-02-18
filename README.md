@@ -4,8 +4,8 @@
 
 # SLNIC Decoder
 
-![Test Status](.github/test-status.svg)
-![Build Status](.github/build-status.svg)
+![Test Status](.github/assets/test-status.svg)
+![Build Status](.github/assets/build-status.svg)
 ![GitHub Release](https://img.shields.io/github/v/release/Chamal1120/flutter-nic-decoder?display_name=release&style=for-the-badge&logo=android&color=%23fab387)
 ![Static Badge](https://img.shields.io/badge/code_style-dart_analyzer-%230075BA?style=for-the-badge&logo=coder)
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/Chamal1120/flutter-nic-decoder?style=for-the-badge&logo=github&color=%23b4befe)
