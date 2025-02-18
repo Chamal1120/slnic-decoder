@@ -42,7 +42,6 @@ jobs:
       - name: Commit and Push Badge
         if: success()
         run: |
-          git pull origin main
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           mv test-status.svg .github/assets/test-status.svg
@@ -91,7 +90,7 @@ jobs:
       - name: Commit and Push Build Badge
         if: success()
         run: |
-          git pull origin main
+          git pull
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           mv build-status.svg .github/assets/build-status.svg
