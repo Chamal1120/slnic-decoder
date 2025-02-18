@@ -2,7 +2,8 @@ name: CI/CD
 on:
   push:
     tags:
-      - 'v*'
+      - 'v*' # Tigger on tags like v1.0.0
+# Permissions allowed for github actions
 permissions:
   contents: write
   discussions: write
@@ -14,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Fetch all history for tags
           ref: main
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -26,7 +27,8 @@ jobs:
       - name: Run tests
         id: test_step
         run: |
-          if flutter test; then
+          # Condition to check if tests pass
+          if flutter test; then 
             echo "TEST_STATUS=Passing" >> $GITHUB_ENV
             echo "BADGE_COLOR=green" >> $GITHUB_ENV
           else
@@ -35,9 +37,9 @@ jobs:
             exit 1
           fi
       - name: Generate Badge
-        if: success()
+        if: success() # Only generate badge if tests pass
         run: |
-          BADGE_URL="https://img.shields.io/badge/Tests-${{ env.TEST_STATUS }}-${{ env.BADGE_COLOR }}?style=for-the-badge&logo=testcafe"
+          BADGE_URL="https://img.shields.io/badge/Tests-${{ env.TEST_STATUS }}-${{ env.BADGE_COLOR }}?style=for-the-badge&logo=testcafe&logoColor=ffffff"
           curl -o test-status.svg "$BADGE_URL"
       - name: Commit and Push Badge
         if: success()
@@ -46,7 +48,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           mv test-status.svg .github/assets/test-status.svg
           git add .github/assets/test-status.svg
-          git diff --staged --quiet || git commit -m "ci/cd: Update test status badge"
+          git diff --staged --quiet || git commit -m "ci/cd: Update test status badge" # Only commit if there are changes
           git push origin main
   build:
     name: Build APK
@@ -55,7 +57,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Fetch all history for tags
           ref: main
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -67,6 +69,7 @@ jobs:
       - name: Build APK
         id: build_step
         run: |
+          # Condition to check if build passes
           if flutter build apk --release; then
             echo "BUILD_STATUS=Passing" >> $GITHUB_ENV
             echo "BADGE_COLOR=green" >> $GITHUB_ENV
@@ -83,9 +86,9 @@ jobs:
           name: app-release-apk
           path: build/app/outputs/flutter-apk/nic-app-${{ github.ref_name }}.apk
       - name: Generate Build Badge
-        if: success()
+        if: success() # Only generate badge if build passes
         run: |
-          BADGE_URL="https://img.shields.io/badge/Builds-${{ env.BUILD_STATUS }}-${{ env.BADGE_COLOR }}?style=for-the-badge&logo=androidstudio"
+          BADGE_URL="https://img.shields.io/badge/Builds-${{ env.BUILD_STATUS }}-${{ env.BADGE_COLOR }}?style=for-the-badge&logo=androidstudio&logoColor=ffffff"
           curl -o build-status.svg "$BADGE_URL"
       - name: Commit and Push Build Badge
         if: success()
@@ -95,7 +98,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           mv build-status.svg .github/assets/build-status.svg
           git add .github/assets/build-status.svg
-          git diff --staged --quiet || git commit -m "ci/cd: Update build status badge"
+          git diff --staged --quiet || git commit -m "ci/cd: Update build status badge" # Only commit if there are changes
           git push origin main
   release:
     name: Create GitHub Release
@@ -105,7 +108,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Fetch all history for tags
           ref: main
       - name: Download APK artifact
         uses: actions/download-artifact@v4
