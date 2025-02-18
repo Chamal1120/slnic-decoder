@@ -1,3 +1,9 @@
+## v0.1.2+6
+# What's new?
+
+## Features
+- Bump the build to test workflow fix
+
 ## v0.1.2+3
 # What's new?
 
