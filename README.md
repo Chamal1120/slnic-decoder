@@ -6,12 +6,12 @@
 
 ![Test Status](.github/assets/test-status.svg)
 ![Build Status](.github/assets/build-status.svg)
-![GitHub Release](https://img.shields.io/github/v/release/Chamal1120/flutter-nic-decoder?display_name=release&style=for-the-badge&logo=android&color=%23fab387)
+![GitHub Release](https://img.shields.io/github/v/release/Chamal1120/flutter-nic-decoder?display_name=release&style=for-the-badge&logo=android&logoColor=ffffff&color=%23fab387)
 ![Static Badge](https://img.shields.io/badge/code_style-dart_analyzer-%230075BA?style=for-the-badge&logo=coder)
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/Chamal1120/flutter-nic-decoder?style=for-the-badge&logo=github&color=%23b4befe)
 
 
-[About](#about) · [Features](#features) · [Installation](#installation) · [Compilation](#compilation) · [Development](#development)
+[About](#about) · [Features](#features) · [Tech](#tech) · [Installation](#installation) · [Compilation](#compilation) · [Development](#development)
 
 </div>
 
@@ -23,6 +23,14 @@ This is a flutter app to decode the Sri Lanka NIC (National Identity Card) numbe
 
 1. Extracts Date of birth, gender and person's ability to vote
 2. Material 3 design
+
+## Tech
+
+1. GetX for State Management
+2. Url_launcher and linkify for launching web links
+3. Flutter launcher icons for generating app icons
+4. Flutter test for testing
+5. Github actions for CI/CD
 
 ## Installation
 
