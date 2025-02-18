@@ -46,7 +46,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           mv test-status.svg .github/assets/test-status.svg
           git add .github/assets/test-status.svg
-          git commit -m "ci/cd: Update test status badge"
+          git diff --staged --quiet || git commit -m "ci/cd: Update test status badge"
           git push origin main
   build:
     name: Build APK
@@ -95,7 +95,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           mv build-status.svg .github/assets/build-status.svg
           git add .github/assets/build-status.svg
-          git commit -m "ci/cd: Update build status badge"
+          git diff --staged --quiet || git commit -m "ci/cd: Update build status badge"
           git push origin main
   release:
     name: Create GitHub Release
