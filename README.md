@@ -10,25 +10,24 @@
 ![Static Badge](https://img.shields.io/badge/code_style-dart_analyzer-%230075BA?style=for-the-badge&logo=coder)
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/Chamal1120/flutter-nic-decoder?style=for-the-badge&logo=github&color=%23b4befe)
 
-
-[About](#about) · [Features](#features) · [Tech](#tech) · [Installation](#installation) · [Compilation](#compilation) · [Development](#development)
+[About](#about) · [Features](#features) · [Technologies](#technologies) · [Installation](#installation) · [Compilation](#compilation) · [Development](#development)
 
 </div>
 
 ## About
 
-This is a flutter app to decode the Sri Lanka NIC (National Identity Card) number, developed as the final project for the CCS3351 Mobile Application Development module of University.
+This is a flutter app to decode the <a href="https://en.wikipedia.org/wiki/National_identity_card_(Sri_Lanka)#NIC_number"  target="blank">**Sri Lanka NIC (National Identity Card)**</a> number, developed as the final project for the CCS3351 Mobile Application Development module of University.
 
 ## Features
 
 1. Extracts Date of birth, gender and person's ability to vote
 2. Material 3 design
 
-## Tech
+## Technologies
 
-1. GetX for State Management
-2. Url_launcher and linkify for launching web links
-3. Flutter launcher icons for generating app icons
+1. <a href="https://github.com/jonataslaw/getx" target="blank">GetX</a> for State Management
+2. <a href="https://pub.dev/packages/url_launcher" target="blank">Url_launcher</a> and <a href="https://pub.dev/packages/flutter_linkify" target="blank">linkify</a> for launching web links
+3. <a href="https://pub.dev/packages/flutter_launcher_icons" target="blank">Flutter launcher icons</a> for generating launcher icons
 4. Flutter test for testing
 5. Github actions for CI/CD
 
@@ -36,7 +35,7 @@ This is a flutter app to decode the Sri Lanka NIC (National Identity Card) numbe
 
 1. Grab the latest apk from ***[releases](https://github.com/Chamal1120/flutter_nic_decoder/releases)***.
 2. Enable apk sideloading on your device.
-3. Navigate to the download directory and tap on the nic-app-v.x.x.x.apk file and follow the instructions.
+3. Open up the `nic-app-v.x.x.x.apk` file and follow the instructions.
 
 > [!NOTE]
 > As of now, installation packages are only available for android devices. If you wish to use this app on an iOS device, you will have to compile it from source. See [compilation](#compilation) for more information.
@@ -46,7 +45,7 @@ This is a flutter app to decode the Sri Lanka NIC (National Identity Card) numbe
 #### Prerequisites
 
 1. Flutter SDK 3.6.0 or above
-2. Android studio
+2. Android studio latest
 
 #### Steps
 
@@ -75,8 +74,8 @@ flutter build ios --release # For ios
 #### Prerequisites
 
 1. Flutter SDK 3.6.0 or above
-2. Android Studio Latest
-3. Code editor that supports Flutter Development (VS Code, Android Studio, etc.)
+2. Android Studio latest
+3. Code editor that supports Flutter Development (VSCode, Android Studio, Neovim, etc.)
 4. Emulator configured through Android studio or AVD Manager (or a physical device)
 
 #### Steps
