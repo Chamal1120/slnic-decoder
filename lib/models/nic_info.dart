@@ -10,7 +10,12 @@ class NicInfo {
       required this.gender,
       required this.votability});
 
-// Decode 9 digit NIC
+  // Helper function: check if a year is a leap year
+  static bool isLeapYear(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+  }
+
+  // Decode 9 digit NIC
   factory NicInfo.from9Digit(String nicVal) {
     String gender = "Male";
     String votability = "No";
@@ -30,9 +35,10 @@ class NicInfo {
       votability = "Yes";
     }
 
-    // Evaluate the actual birth date using Dart's DateTime class
-    DateTime date =
-        DateTime(birthYear, 1, 1).add(Duration(days: birthCode - 2));
+    // Check if birthYear is a leap year and adjust birthCode accordingly
+    int dayAdjustment = isLeapYear(birthYear) ? 1 : 2;
+    DateTime date = DateTime(birthYear, 1, 1)
+        .add(Duration(days: birthCode - dayAdjustment));
 
     // Format the date to represent as xxxx/xx/xx
     String birthDate =
@@ -65,9 +71,10 @@ class NicInfo {
       votability = "Yes";
     }
 
-    // Evaluate the actual birth date using Dart's DateTime class
-    DateTime date =
-        DateTime(birthYear, 1, 1).add(Duration(days: birthCode - 2));
+    // Check if birthYear is a leap year and adjust birthCode accordingly
+    int dayAdjustment = isLeapYear(birthYear) ? 1 : 2;
+    DateTime date = DateTime(birthYear, 1, 1)
+        .add(Duration(days: birthCode - dayAdjustment));
 
     // Format the date to represent as xxxx/xx/xx
     String birthDate =
