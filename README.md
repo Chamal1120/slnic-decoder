@@ -8,7 +8,6 @@
 ![Build Status](.github/assets/build-status.svg)
 ![GitHub Release](https://img.shields.io/github/v/release/Chamal1120/flutter-nic-decoder?display_name=release&style=for-the-badge&logo=android&logoColor=ffffff&color=%23fab387)
 ![Static Badge](https://img.shields.io/badge/code_style-dart_analyzer-%230075BA?style=for-the-badge&logo=coder)
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/Chamal1120/flutter-nic-decoder?style=for-the-badge&logo=github&color=%23b4befe)
 
 [About](#about) · [Features](#features) · [Technologies](#technologies) · [Installation](#installation) · [Compilation](#compilation) · [Development](#development)
 
@@ -98,4 +97,4 @@ flutter run
 
 ## Thank You
 
-Thank you for using the SLNIC Decoder app. If you have any issues or suggestions, please feel free to open an issue.
+You're a cool human being if you read it up to here.
