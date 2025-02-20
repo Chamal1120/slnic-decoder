@@ -26,16 +26,7 @@ jobs:
         run: flutter pub get
       - name: Run tests
         id: test_step
-        run: |
-          # Condition to check if tests pass
-          if flutter test; then 
-            echo "TEST_STATUS=Passing" >> $GITHUB_ENV
-            echo "BADGE_COLOR=green" >> $GITHUB_ENV
-          else
-            echo "TEST_STATUS=Failing" >> $GITHUB_ENV
-            echo "BADGE_COLOR=red" >> $GITHUB_ENV
-            exit 1
-          fi
+        run: "# Condition to check if tests pass\nif flutter test; then \n  echo \"TEST_STATUS=Passing\" >> $GITHUB_ENV\n  echo \"BADGE_COLOR=green\" >> $GITHUB_ENV\nelse\n  echo \"TEST_STATUS=Failing\" >> $GITHUB_ENV\n  echo \"BADGE_COLOR=red\" >> $GITHUB_ENV\n  exit 1\nfi\n"
       - name: Generate Badge
         if: success() # Only generate badge if tests pass
         run: |
@@ -79,8 +70,9 @@ jobs:
             exit 1
           fi
       - name: Rename APK with version
-        run: mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk build/app/outputs/flutter-apk/nic-app-armabi-v7a${{ github.ref_name }}.apk
-        run: mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk build/app/outputs/flutter-apk/nic-app-arm64-v8a${{ github.ref_name }}.apk
+        run: |
+          mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk build/app/outputs/flutter-apk/nic-app-armabi-v7a${{ github.ref_name }}.apk
+          mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk build/app/outputs/flutter-apk/nic-app-arm64-v8a${{ github.ref_name }}.apk
       - name: Upload arm APK
         uses: actions/upload-artifact@v4
         with:
