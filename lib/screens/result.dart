@@ -30,7 +30,7 @@ class ResultPage extends StatelessWidget {
               SizedBox(
                 height: 40.0,
               ),
-              TableCard(),
+              SingleChildScrollView(child: TableCard()),
               SizedBox(
                 height: 40.0,
               ),
@@ -95,9 +95,13 @@ class TableCard extends StatelessWidget {
             ),
             children: [
               // Buids rows using BuildTableRow widget
+              _buildTableRow(context, 'ID No', nicInfo?.nicNo ?? 'N/A'),
+              _buildTableRow(context, 'Format', nicInfo?.format ?? 'N/A'),
               _buildTableRow(context, 'Serial No', nicInfo?.serialNo ?? 'N/A'),
               _buildTableRow(
                   context, 'Date of Birth', nicInfo?.birthDate ?? 'N/A'),
+              _buildTableRow(
+                  context, 'Age', nicInfo?.age ?? 'N/A'),
               _buildTableRow(context, 'Gender', nicInfo?.gender ?? 'N/A'),
               _buildTableRow(
                   context, 'Ability to Vote', nicInfo?.votability ?? 'N/A'),
