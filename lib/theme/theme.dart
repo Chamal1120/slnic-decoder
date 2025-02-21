@@ -25,6 +25,11 @@ final ThemeData darkCatppuccinTheme = ThemeData(
   ),
 
   textTheme: TextTheme(
+    displayMedium: TextStyle(
+      color: mocha.yellow,
+      fontSize: 15.0,
+      fontWeight: FontWeight.bold,
+    ),
     titleMedium: TextStyle(
       color: mocha.crust,
       fontSize: 15.0,
@@ -53,7 +58,7 @@ final ThemeData darkCatppuccinTheme = ThemeData(
 
   // Define a Card Theme for TableCard
   cardTheme: CardTheme(
-    color: mocha.yellow,
+    color: mocha.crust,
     elevation: 8,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(16),
@@ -61,7 +66,7 @@ final ThemeData darkCatppuccinTheme = ThemeData(
   ),
 
   // Define table border theme
-  dividerColor: mocha.crust,
+  dividerColor: mocha.base,
 
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
@@ -75,7 +80,7 @@ final ThemeData darkCatppuccinTheme = ThemeData(
         vertical: 12.0,
       ),
       textStyle: TextStyle(
-        fontSize: 13.0,
+        fontSize: 14.0,
         fontWeight: FontWeight.w500,
       ),
     ),
@@ -114,8 +119,8 @@ final ThemeData darkCatppuccinTheme = ThemeData(
     backgroundColor: mocha.base,
     contentTextStyle: TextStyle(
       color: mocha.red,
-      fontSize: 15.0,
-      fontWeight: FontWeight.w500,
+      fontSize: 14.0,
+      fontWeight: FontWeight.w400,
     ),
   ),
 
