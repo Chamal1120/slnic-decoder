@@ -15,30 +15,35 @@ class ResultPage extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(30.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.check_circle_outline_rounded,
-                size: 150.0,
-                color: mocha.green,
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Text('Decode Success!'),
-              SizedBox(
-                height: 40.0,
-              ),
-              SingleChildScrollView(child: TableCard()),
-              SizedBox(
-                height: 40.0,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Get.back();
-                },
-                child: Text('Go Back'),
+          child: ListView(
+            children: <Widget>[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.check_circle_outline_rounded,
+                    size: 150.0,
+                    color: mocha.green,
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text('Decode Success!'),
+                  SizedBox(
+                    height: 40.0,
+                  ),
+                  TableCard(),
+                  SizedBox(
+                    height: 40.0,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: Text('Go Back'),
+                  ),
+                ],
               ),
             ],
           ),
@@ -76,11 +81,12 @@ class TableCard extends StatelessWidget {
       // Load the values based on state variables of nicController
       child: Obx(
         () {
-
           if (nicController.isLoading.value) {
             return SizedBox(
               height: 400,
-              child: Center(child: CircularProgressIndicator(),),
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
             );
           }
 
@@ -100,8 +106,7 @@ class TableCard extends StatelessWidget {
               _buildTableRow(context, 'Serial No', nicInfo?.serialNo ?? 'N/A'),
               _buildTableRow(
                   context, 'Date of Birth', nicInfo?.birthDate ?? 'N/A'),
-              _buildTableRow(
-                  context, 'Age', nicInfo?.age ?? 'N/A'),
+              _buildTableRow(context, 'Age', nicInfo?.age ?? 'N/A'),
               _buildTableRow(context, 'Gender', nicInfo?.gender ?? 'N/A'),
               _buildTableRow(
                   context, 'Ability to Vote', nicInfo?.votability ?? 'N/A'),
@@ -126,7 +131,7 @@ class TableCard extends StatelessWidget {
           padding: const EdgeInsets.all(12.0),
           child: Text(
             title,
-            style: theme.textTheme.titleMedium
+            style: theme.textTheme.displayMedium
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
         ),
@@ -134,7 +139,8 @@ class TableCard extends StatelessWidget {
           padding: const EdgeInsets.all(12.0),
           child: Text(
             value,
-            style: theme.textTheme.titleMedium,
+            style: theme.textTheme.displayMedium
+                ?.copyWith(fontWeight: FontWeight.w400, fontSize: 16.0),
           ),
         ),
       ],
