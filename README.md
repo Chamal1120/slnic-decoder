@@ -9,7 +9,7 @@
 ![GitHub Release](https://img.shields.io/github/v/release/Chamal1120/flutter-nic-decoder?display_name=release&style=for-the-badge&logo=android&logoColor=ffffff&color=%23fab387)
 ![Static Badge](https://img.shields.io/badge/code_style-dart_analyzer-%230075BA?style=for-the-badge&logo=coder)
 
-[About](#about) · [Features](#features) · [Technologies](#technologies) · [Installation](#installation) · [Compilation](#compilation) · [Development](#development)
+[About](#about) · [Features](#features) · [Inside](#inside) · [Installation](#installation) · [Compilation](#compilation) · [Development](#development)
 
 </div>
 
@@ -22,7 +22,9 @@ This is a flutter app to decode the <a href="https://en.wikipedia.org/wiki/Natio
 1. Extracts Date of birth, gender and person's ability to vote
 2. Material 3 design
 
-## Technologies
+## Inside
+
+#### Technologies
 
 1. <a href="https://github.com/jonataslaw/getx" target="blank">GetX</a> for State Management
 2. <a href="https://pub.dev/packages/url_launcher" target="blank">Url_launcher</a> and <a href="https://pub.dev/packages/flutter_linkify" target="blank">linkify</a> for launching web links
@@ -30,9 +32,33 @@ This is a flutter app to decode the <a href="https://en.wikipedia.org/wiki/Natio
 4. Flutter test for testing
 5. Github actions for CI/CD
 
+#### Structure
+
+1. **lib** - Contains all the code for the application
+   - **model** - Contains the data model for the NIC with the decoding logic
+   - **controllers** - Contains the GetX controllers for NIC decoding and Navigation
+   - **screens** - Contains the UI screens
+   - **main.dart** - Entry point of the app
+2. **test** - Contains all the test files
+   - **models** - Contains the tests for the NIC model
+   - **controllers** - Contains the tests for the GetX controllers
+3. **.github** - Contains the github actions workflow files
+4. **assets** - Contains the app logo and other assets
+
+#### Design
+
+* **Material 3** - The app follows the Material 3 design guidelines
+* **Custom Icons** - Custom icons are used for the app logo and the launcher icon
+* **Brand Icons** - Brand icons are taken from the simpleicons.org
+* **Colors** - The app uses a custom color palette inspired by Catppuccin mocha theme
+
+> Wireframe and design files are available through the [Figma](https://www.figma.com/design/yed2MidDLrrxfuOhOy0JMF/flutter_nic_decoder_prototype?node-id=0-1&t=9adQaX9o6tSPwVD2-1).
+
 ## Installation
 
 1. Grab the latest apk from ***[releases](https://github.com/Chamal1120/flutter_nic_decoder/releases)***.
+    - Chose the arm64-v8a version for most of the modern devices. (2016 and above)
+    - Chose the armabi-v7a version for older devices.
 2. Enable apk sideloading on your device.
 3. Open up the `nic-app-v.x.x.x.apk` file and follow the instructions.
 
