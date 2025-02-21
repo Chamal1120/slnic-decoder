@@ -1,7 +1,7 @@
 name: flutter_nic_decoder
 description: "Decodes user information from Sri Lankan NIC number."
 publish_to: 'none'
-version: 0.1.4+2
+version: 0.1.4+3
 environment:
   sdk: ^3.6.0
 dependencies:
@@ -22,6 +22,7 @@ flutter:
   assets:
      - assets/social/github.svg
      - assets/social/discord.svg
+     - assets/social/devdotto.svg
 
 # fonts:
 #   - family: Schyler

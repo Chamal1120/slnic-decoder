@@ -8,11 +8,28 @@ final mocha = CatppuccinMocha.flavor;
 final ThemeData darkCatppuccinTheme = ThemeData(
   useMaterial3: true,
 
+  colorScheme: ColorScheme(
+    primary: mocha.yellow,
+    secondary: mocha.text,
+    surface: mocha.surface1,
+    error: mocha.red,
+    onPrimary: mocha.text,
+    onSecondary: mocha.text,
+    onSurface: mocha.text,
+    onError: mocha.text,
+    brightness: Brightness.dark,
+  ),
+
   appBarTheme: AppBarTheme(
     backgroundColor: mocha.base,
   ),
 
   textTheme: TextTheme(
+    titleMedium: TextStyle(
+      color: mocha.crust,
+      fontSize: 15.0,
+      fontWeight: FontWeight.w500,
+    ),
     labelMedium: TextStyle(
       color: mocha.text,
       fontSize: 16.0,
@@ -68,7 +85,7 @@ final ThemeData darkCatppuccinTheme = ThemeData(
 
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    fillColor: mocha.surface2,
+    fillColor: mocha.surface0,
     hintStyle: TextStyle(
       color: mocha.subtext0,
       fontSize: 12.0,
@@ -91,6 +108,15 @@ final ThemeData darkCatppuccinTheme = ThemeData(
       vertical: 12,
     ),
     suffixIconColor: mocha.subtext0,
+  ),
+
+  snackBarTheme: SnackBarThemeData(
+    backgroundColor: mocha.base,
+    contentTextStyle: TextStyle(
+      color: mocha.red,
+      fontSize: 15.0,
+      fontWeight: FontWeight.w500,
+    ),
   ),
 
   navigationBarTheme: NavigationBarThemeData(

@@ -11,6 +11,7 @@ class AboutPage extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             'About',
@@ -18,6 +19,13 @@ class AboutPage extends StatelessWidget {
           ),
           SizedBox(
             height: 10.0,
+          ),
+          Text(
+            'v0.1.4+3',
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          SizedBox(
+            height: 30.0,
           ),
           Text(
             'Developed by',
@@ -39,7 +47,7 @@ class AboutPage extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           SizedBox(
-            height: 50.0,
+            height: 20.0,
           ),
          // Linkify(
          //   onOpen: (link) async {
@@ -51,7 +59,7 @@ class AboutPage extends StatelessWidget {
          //   style: Theme.of(context).textTheme.bodySmall,
          // ),
           Text(
-            'Contact me :)',
+            'My online presence :)',
             style: Theme.of(context).textTheme.bodySmall,
           ),
           SizedBox(
@@ -65,6 +73,20 @@ class AboutPage extends StatelessWidget {
                 onTap: () => launchUrl(Uri.parse('https://github.com/Chamal1120')),
                 child: SvgPicture.asset(
                   'assets/social/github.svg',
+                  width: 22.0,
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.secondary,
+                    BlendMode.srcIn,
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 10.0,
+              ),
+              GestureDetector(
+                onTap: () => launchUrl(Uri.parse('https://discord.gg/vGVNhWXfEj')),
+                child: SvgPicture.asset(
+                  'assets/social/discord.svg',
                   width: 25.0,
                   colorFilter: ColorFilter.mode(
                     Theme.of(context).colorScheme.secondary,
@@ -76,10 +98,10 @@ class AboutPage extends StatelessWidget {
                 width: 10.0,
               ),
               GestureDetector(
-                onTap: () => launchUrl(Uri.parse('https://discord.gg/')),
+                onTap: () => launchUrl(Uri.parse('https://dev.to/chamal1120')),
                 child: SvgPicture.asset(
-                  'assets/social/discord.svg',
-                  width: 25.0,
+                  'assets/social/devdotto.svg',
+                  width: 28.0,
                   colorFilter: ColorFilter.mode(
                     Theme.of(context).colorScheme.secondary,
                     BlendMode.srcIn,
