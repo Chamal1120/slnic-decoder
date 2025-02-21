@@ -1,3 +1,10 @@
+## v0.1.4+3
+# What's new?
+
+## Features
+- Streamline snackbar to M3 design
+- Add NIC No, format and age to result display
+
 ## v0.1.4+2
 # What's new?
 
