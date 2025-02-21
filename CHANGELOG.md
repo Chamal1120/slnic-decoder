@@ -1,3 +1,12 @@
+## v0.1.5+1
+# What's new?
+
+## Features
+- Update result screen theme
+
+## Fixes
+- Add proper handling for 29th feb with non-leap years
+
 ## v0.1.4+3
 # What's new?
 
