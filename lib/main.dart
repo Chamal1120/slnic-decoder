@@ -20,8 +20,8 @@ class NICApp extends StatelessWidget {
       title: 'Flutter NIC Decoder',
       darkTheme: darkCatppuccinTheme,
       /* 
-      Enanble dark mode by default 
-      (for now till the theme switcher is implemented) 
+      Enable dark mode by default 
+      (for now till the theme switcher is implemented :)) 
       */
       themeMode: ThemeMode.dark,
       home: NavBarM3(),
@@ -40,8 +40,7 @@ class NavBarM3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       /*
-      Wrap with Obx widget to update to make the NavigationBar 
-      reactive to navController
+      Wrap with Obx widget to use navController to update the NavigationBar
       */
       bottomNavigationBar: Obx(
         // Update the NavigationBar based on the selected page

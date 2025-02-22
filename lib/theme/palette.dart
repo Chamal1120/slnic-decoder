@@ -87,4 +87,3 @@ class CatppuccinMocha {
     crust: Color(0xFF11111B),
   );
 }
-

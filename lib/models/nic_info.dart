@@ -87,7 +87,7 @@ class NicInfo {
       age--;
     }
 
-    String ageString = age.toString();
+    String ageString = "${age.toString()} Years";
 
     // Check votability
     if (nicLetter == "v") {
