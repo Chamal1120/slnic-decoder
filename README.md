@@ -32,7 +32,7 @@ This is a flutter app to decode the <a href="https://en.wikipedia.org/wiki/Natio
 4. Flutter test for testing
 5. Github actions for CI/CD
 
-#### Structure
+#### Folder Structure
 
 1. **lib** - Contains all the code for the application
    - **model** - Contains the data model for the NIC with the decoding logic
