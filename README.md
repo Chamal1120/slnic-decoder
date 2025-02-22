@@ -13,6 +13,13 @@
 
 </div>
 
+<br>
+
+<div align="center">
+   <img src="/repo-assets/Screenshot_1.webp" height="400px">
+   <img src="/repo-assets/Screenshot_2.webp" height="400px">
+</div>
+
 ## About
 
 This is a flutter app to decode the <a href="https://en.wikipedia.org/wiki/National_identity_card_(Sri_Lanka)#NIC_number"  target="blank">**Sri Lankan NIC (National Identity Card)**</a> number, developed as the final project for the CCS3351 Mobile Application Development module of University.
