@@ -98,12 +98,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: app-arm
-          path: build/app/outputs/flutter-apk/nic-app-armabi-v7a${{ github.ref_name }}.apk
+          path: build/app/outputs/flutter-apk/nic-app-armabi-v7a-${{ github.ref_name }}.apk
       - name: Upload arm64 APK
         uses: actions/upload-artifact@v4
         with:
           name: app-arm64
-          path: build/app/outputs/flutter-apk/nic-app-arm64-v8a${{ github.ref_name }}.apk
+          path: build/app/outputs/flutter-apk/nic-app-arm64-v8a-${{ github.ref_name }}.apk
   release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
