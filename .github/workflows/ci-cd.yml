@@ -3,10 +3,8 @@ on:
   push:
     tags:
       - 'v*' # Tigger on tags like v1.0.0
-# Permissions allowed for github actions
-permissions:
+permissions: # Permissions allowed for github actions
   contents: write
-  discussions: write
 jobs:
   test:
     name: Run Tests
@@ -27,13 +25,11 @@ jobs:
       - name: Run tests
         id: test_step
         run: "# Condition to check if tests pass\nif flutter test; then \n  echo \"TEST_STATUS=Passing\" >> $GITHUB_ENV\n  echo \"BADGE_COLOR=green\" >> $GITHUB_ENV\nelse\n  echo \"TEST_STATUS=Failing\" >> $GITHUB_ENV\n  echo \"BADGE_COLOR=red\" >> $GITHUB_ENV\n  exit 1\nfi\n"
-      - name: Generate Badge
-        if: success() # Only generate badge if tests pass
+      - name: Generate Badge # Generate badge based on test status
         run: |
           BADGE_URL="https://img.shields.io/badge/Tests-${{ env.TEST_STATUS }}-${{ env.BADGE_COLOR }}?style=for-the-badge&logo=testcafe&logoColor=ffffff"
           curl -o test-status.svg "$BADGE_URL"
       - name: Commit and Push Badge
-        if: success()
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -57,6 +53,18 @@ jobs:
           flutter-version: 3.27.0
       - name: Install dependencies
         run: flutter pub get
+      - name: Decrypt keystore
+        run: |
+          gpg --quiet --batch --yes --passphrase "${{ secrets.GPG_PASSPHRASE }}" \
+          -o release-keystore.jks release-keystore.jks.gpg
+      - name: Create key.properties
+        run: |
+          cat <<EOF > android/key.properties
+          storeFile=../../release-keystore.jks
+          storePassword=${{ secrets.KEYSTORE_PASSWORD }}
+          keyAlias=${{ secrets.KEY_ALIAS }}
+          keyPassword=${{ secrets.KEY_PASSWORD }}
+          EOF
       - name: Build APK
         id: build_step
         run: |
@@ -69,10 +77,23 @@ jobs:
             echo "BADGE_COLOR=red" >> $GITHUB_ENV
             exit 1
           fi
+      - name: Generate Build Badge # Generate badge based on build status
+        run: |
+          BADGE_URL="https://img.shields.io/badge/Builds-${{ env.BUILD_STATUS }}-${{ env.BADGE_COLOR }}?style=for-the-badge&logo=androidstudio&logoColor=ffffff"
+          curl -o build-status.svg "$BADGE_URL"
+      - name: Commit and Push Build Badge
+        run: |
+          git pull
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          mv build-status.svg .github/assets/build-status.svg
+          git add .github/assets/build-status.svg
+          git diff --staged --quiet || git commit -m "ci/cd: Update build status badge" # Only commit if there are changes
+          git push origin main
       - name: Rename APK with version
         run: |
-          mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk build/app/outputs/flutter-apk/nic-app-armabi-v7a${{ github.ref_name }}.apk
-          mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk build/app/outputs/flutter-apk/nic-app-arm64-v8a${{ github.ref_name }}.apk
+          mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk build/app/outputs/flutter-apk/nic-app-armabi-v7a-${{ github.ref_name }}.apk
+          mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk build/app/outputs/flutter-apk/nic-app-arm64-v8a-${{ github.ref_name }}.apk
       - name: Upload arm APK
         uses: actions/upload-artifact@v4
         with:
@@ -83,21 +104,6 @@ jobs:
         with:
           name: app-arm64
           path: build/app/outputs/flutter-apk/nic-app-arm64-v8a${{ github.ref_name }}.apk
-      - name: Generate Build Badge
-        if: success() # Only generate badge if build passes
-        run: |
-          BADGE_URL="https://img.shields.io/badge/Builds-${{ env.BUILD_STATUS }}-${{ env.BADGE_COLOR }}?style=for-the-badge&logo=androidstudio&logoColor=ffffff"
-          curl -o build-status.svg "$BADGE_URL"
-      - name: Commit and Push Build Badge
-        if: success()
-        run: |
-          git pull
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          mv build-status.svg .github/assets/build-status.svg
-          git add .github/assets/build-status.svg
-          git diff --staged --quiet || git commit -m "ci/cd: Update build status badge" # Only commit if there are changes
-          git push origin main
   release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
