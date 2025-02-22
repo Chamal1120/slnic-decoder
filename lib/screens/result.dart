@@ -104,12 +104,11 @@ class TableCard extends StatelessWidget {
               _buildTableRow(context, 'ID No', nicInfo?.nicNo ?? 'N/A'),
               _buildTableRow(context, 'Format', nicInfo?.format ?? 'N/A'),
               _buildTableRow(context, 'Serial No', nicInfo?.serialNo ?? 'N/A'),
-              _buildTableRow(
-                  context, 'Date of Birth', nicInfo?.birthDate ?? 'N/A'),
+              _buildTableRow(context, 'Date of Birth', nicInfo?.birthDate ?? 'N/A'),
+              _buildTableRow(context, 'WeekDay of Birth', nicInfo?.weekDay ?? 'N/A'),
               _buildTableRow(context, 'Age', nicInfo?.age ?? 'N/A'),
               _buildTableRow(context, 'Gender', nicInfo?.gender ?? 'N/A'),
-              _buildTableRow(
-                  context, 'Ability to Vote', nicInfo?.votability ?? 'N/A'),
+              _buildTableRow(context, 'Ability to Vote', nicInfo?.votability ?? 'N/A'),
             ],
           );
         },
@@ -117,7 +116,7 @@ class TableCard extends StatelessWidget {
     );
   }
 
-  // Create custom rows for the table
+  // Define buildTableRow widget
   TableRow _buildTableRow(
     BuildContext context,
     title,

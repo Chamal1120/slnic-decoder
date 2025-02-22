@@ -20,7 +20,7 @@ class NicController extends GetxController {
       return;
     }
 
-    // Check number length and conditionally create proper NicInfo objects
+    // Check NIC number length and conditionally create proper NicInfo objects
     if (nicVal.length == 10) {
       nicInfo.value = NicInfo.from9Digit(nicVal);
     } else if (nicVal.length == 12) {

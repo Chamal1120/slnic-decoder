@@ -3,6 +3,7 @@ class NicInfo {
   final String format;
   final String serialNo;
   final String birthDate;
+  final String weekDay;
   final String age;
   final String gender;
   final String votability;
@@ -12,6 +13,7 @@ class NicInfo {
     required this.format,
     required this.serialNo,
     required this.birthDate,
+    required this.weekDay,
     required this.age,
     required this.gender,
     required this.votability,
@@ -39,20 +41,7 @@ class NicInfo {
     }
 
     // Days in months (Non-Leap & Leap Year)
-    List<int> daysInMonths = [
-      31,
-      29,
-      31,
-      30,
-      31,
-      30,
-      31,
-      31,
-      30,
-      31,
-      30,
-      31
-    ];
+    List<int> daysInMonths = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
     // Determine birth month and day
     int remainingDays = birthCode;
@@ -64,7 +53,7 @@ class NicInfo {
     }
 
     int day = remainingDays;
-    
+
     // Handle 29th February for non-leap years
     if (month == 2 && day == 29 && !isLeapYear(birthYear)) {
       month = 3;
@@ -75,6 +64,21 @@ class NicInfo {
     String birthDate =
         '$birthYear/${month.toString().padLeft(2, '0')}/${day.toString().padLeft(2, '0')}';
 
+    // Parse the string into a DateTime object
+    DateTime date = DateTime.parse(birthDate.replaceAll("/", "-"));
+
+    // Get the day of the week from the DateTime object
+    List<String> weekdays = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ];
+
+    String dayOfWeek = weekdays[date.weekday - 1];
     DateTime today = DateTime.now();
 
     // Calculate age
@@ -95,6 +99,7 @@ class NicInfo {
       format: "Old",
       serialNo: serialNo,
       birthDate: birthDate,
+      weekDay: dayOfWeek,
       age: ageString,
       gender: gender,
       votability: votability,
@@ -151,6 +156,21 @@ class NicInfo {
     // Format the birth date
     String birthDate =
         '$birthYear/${month.toString().padLeft(2, '0')}/${day.toString().padLeft(2, '0')}';
+    // Parse the string into a DateTime object
+    DateTime date = DateTime.parse(birthDate.replaceAll("/", "-"));
+
+    // Get the day of the week from the DateTime object
+    List<String> weekdays = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ];
+
+    String dayOfWeek = weekdays[date.weekday - 1];
 
     DateTime today = DateTime.now();
 
@@ -172,6 +192,7 @@ class NicInfo {
       format: "New",
       serialNo: serialNo,
       birthDate: birthDate,
+      weekDay: dayOfWeek,
       age: ageString,
       gender: gender,
       votability: votability,
