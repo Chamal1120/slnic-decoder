@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nic_decoder/theme/theme.dart';
-import 'package:flutter_nic_decoder/controllers/nic_controller.dart';
+import 'package:slnic_decoder/theme/theme.dart';
+import 'package:slnic_decoder/controllers/nic_controller.dart';
 import 'package:get/get.dart';
 
+/// Displays the result of decoding the NIC number.
+///
+/// This screen shows a success message and a table with the decoded NIC information
+/// (ID, format, serial number, etc.). It also provides a button to navigate back to the previous page.
 class ResultPage extends StatelessWidget {
   const ResultPage({super.key});
 
@@ -53,11 +57,15 @@ class ResultPage extends StatelessWidget {
   }
 }
 
-// Create table widget with result data
+/// A widget that displays the decoded NIC information in a table format.
+///
+/// The table includes rows for various pieces of NIC data such as the ID number,
+/// format, serial number, date of birth, weekday of birth, age, gender, and
+/// voting eligibility. It dynamically updates based on the state of the `nicController`.
 class TableCard extends StatelessWidget {
   TableCard({super.key});
 
-  // Get the existing controller
+  /// The controller that manages the state for the NIC decoding process.
   final NicController nicController = Get.find();
 
   @override
@@ -100,7 +108,7 @@ class TableCard extends StatelessWidget {
               horizontalInside: BorderSide(color: theme.dividerColor, width: 1),
             ),
             children: [
-              // Buids rows using BuildTableRow widget
+              // Builds rows using BuildTableRow widget
               _buildTableRow(context, 'ID No', nicInfo?.nicNo ?? 'N/A'),
               _buildTableRow(context, 'Format', nicInfo?.format ?? 'N/A'),
               _buildTableRow(context, 'Serial No', nicInfo?.serialNo ?? 'N/A'),
@@ -116,10 +124,17 @@ class TableCard extends StatelessWidget {
     );
   }
 
-  // Define buildTableRow widget
+  /// Builds a single row for the NIC data table.
+  ///
+  /// **Parameters:**
+  /// - `context`: The `BuildContext` used to access the theme.
+  /// - `title`: The label for the table row (e.g., 'ID No').
+  /// - `value`: The value to display in the row (e.g., '12345').
+  ///
+  /// Returns a `TableRow` widget that displays the title and value in the row.
   TableRow _buildTableRow(
     BuildContext context,
-    title,
+    String title,
     String value,
   ) {
     final theme = Theme.of(context);
@@ -146,3 +161,4 @@ class TableCard extends StatelessWidget {
     );
   }
 }
+

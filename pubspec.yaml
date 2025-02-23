@@ -1,4 +1,4 @@
-name: flutter_nic_decoder
+name: slnic_decoder
 description: "Decodes user information from Sri Lankan NIC number."
 publish_to: 'none'
 version: 0.1.5+4

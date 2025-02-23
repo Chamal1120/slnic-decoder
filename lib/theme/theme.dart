@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nic_decoder/theme/palette.dart';
+import 'package:slnic_decoder/theme/palette.dart';
 
-// Shortening the CatppuccinMocha class to mocha
+// Shortening the CatppuccinMocha class to mocha for easier usage
+/// A shortened reference to the `CatppuccinMocha` class, using the `flavor` property to define the theme.
 final mocha = CatppuccinMocha.flavor;
 
-// Defining the dark theme for the app
+/// The dark theme for the app, based on the Catppuccin Mocha color palette.
+/// This theme defines the color scheme, text styles, and widget customizations for a consistent dark mode experience.
 final ThemeData darkCatppuccinTheme = ThemeData(
   useMaterial3: true,
 
+  /// The color scheme for the dark theme.
   colorScheme: ColorScheme(
     primary: mocha.yellow,
     secondary: mocha.text,
@@ -20,10 +23,12 @@ final ThemeData darkCatppuccinTheme = ThemeData(
     brightness: Brightness.dark,
   ),
 
+  /// The app bar theme defines the background color for the AppBar.
   appBarTheme: AppBarTheme(
     backgroundColor: mocha.base,
   ),
 
+  /// The text theme defines the various text styles used throughout the app.
   textTheme: TextTheme(
     displayMedium: TextStyle(
       color: mocha.yellow,
@@ -56,7 +61,7 @@ final ThemeData darkCatppuccinTheme = ThemeData(
     ),
   ),
 
-  // Define a Card Theme for TableCard
+  /// The card theme defines the look and feel for card-based UI elements such as TableCard.
   cardTheme: CardTheme(
     color: mocha.crust,
     elevation: 8,
@@ -65,9 +70,10 @@ final ThemeData darkCatppuccinTheme = ThemeData(
     ),
   ),
 
-  // Define table border theme
+  /// The divider color is used for table borders and other separations.
   dividerColor: mocha.base,
 
+  /// The ElevatedButtonThemeData defines the style for all `ElevatedButton` widgets.
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       foregroundColor: mocha.crust,
@@ -86,8 +92,10 @@ final ThemeData darkCatppuccinTheme = ThemeData(
     ),
   ),
 
+  /// The text selection theme defines the appearance of text selection cursors.
   textSelectionTheme: TextSelectionThemeData(cursorColor: mocha.text),
 
+  /// The input decoration theme defines the styling for text fields and form inputs.
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     fillColor: mocha.surface0,
@@ -115,6 +123,7 @@ final ThemeData darkCatppuccinTheme = ThemeData(
     suffixIconColor: mocha.subtext0,
   ),
 
+  /// The SnackBar theme defines the background and text styling for SnackBars.
   snackBarTheme: SnackBarThemeData(
     backgroundColor: mocha.base,
     contentTextStyle: TextStyle(
@@ -124,6 +133,7 @@ final ThemeData darkCatppuccinTheme = ThemeData(
     ),
   ),
 
+  /// The navigation bar theme defines the appearance of the app's bottom navigation bar.
   navigationBarTheme: NavigationBarThemeData(
     backgroundColor: mocha.base,
     indicatorColor: mocha.yellow,
@@ -148,9 +158,11 @@ final ThemeData darkCatppuccinTheme = ThemeData(
   ),
 );
 
-// Background gradient
+/// A background gradient using the mocha color palette.
+/// This gradient is used to create a smooth visual transition between two colors.
 final LinearGradient catppuccinMochaGradient = LinearGradient(
   colors: [mocha.mantle, mocha.crust],
   begin: Alignment.topCenter,
   end: Alignment.bottomCenter,
 );
+

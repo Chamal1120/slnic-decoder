@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nic_decoder/controllers/nic_controller.dart';
+import 'package:slnic_decoder/controllers/nic_controller.dart';
 import 'package:get/get.dart';
-import 'package:flutter_nic_decoder/screens/result.dart';
+import 'package:slnic_decoder/screens/result.dart';
 
+/// Allows the user to input an NIC number and decode it.
+///
+/// Screen contains:
+/// - A `TextField` for entering the NIC number.
+/// - A button that triggers the decoding of the NIC number when pressed.
+/// - Displays an error message if the NIC number is invalid.
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
+  /// Controller for the TextField that holds the NIC number input.
   final TextEditingController textNicController = TextEditingController();
+
+  /// A controller to handle the NIC decoding logic.
   final NicController nicController = Get.put(NicController());
 
   @override
@@ -50,7 +59,7 @@ class HomePage extends StatelessWidget {
                 return;
               }
 
-              // Check if the NIC number is of the correct format
+              // Check if the NIC number is in the correct format
               if (nicVal.length == 10) {
                 checkString = nicVal.substring(0, nicVal.length - 1);
               } else if (nicVal.isEmpty) {
@@ -73,7 +82,15 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-  // Helper function to show ScaffoldMessenger SnackBar
+
+  /// Displays a `SnackBar` with a message on the screen.
+  ///
+  /// This is a helper function that simplifies showing a `SnackBar` with the
+  /// given message.
+  ///
+  /// **Parameters:**
+  /// - `context`: The `BuildContext` required to show the `SnackBar`.
+  /// - `message`: The message to display in the `SnackBar`.
   void _showSnackBar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -82,3 +99,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+

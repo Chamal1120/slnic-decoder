@@ -1,11 +1,11 @@
 <div align="center">
 
-<img src=".github/assets/app-logo.svg">
+<img src="https://raw.githubusercontent.com/Chamal1120/flutter-nic-decoder/refs/heads/main/repo-assets/app-logo.svg">
 
 # SLNIC Decoder
 
-![Test Status](.github/assets/test-status.svg)
-![Build Status](.github/assets/build-status.svg)
+![Test Status](https://raw.githubusercontent.com/Chamal1120/flutter-nic-decoder/refs/heads/main/.github/assets/test-status.svg)
+![Build Status](https://raw.githubusercontent.com/Chamal1120/flutter-nic-decoder/refs/heads/main/.github/assets/build-status.svg)
 ![GitHub Release](https://img.shields.io/github/v/release/Chamal1120/flutter-nic-decoder?display_name=release&style=for-the-badge&logo=android&logoColor=ffffff&color=%23fab387)
 ![Static Badge](https://img.shields.io/badge/code_style-dart_analyzer-%230075BA?style=for-the-badge&logo=coder)
 
@@ -16,8 +16,7 @@
 <br>
 
 <div align="center">
-   <img src="/repo-assets/Screenshot_1.webp" height="400px">
-   <img src="/repo-assets/Screenshot_2.webp" height="400px">
+   <img src="https://raw.githubusercontent.com/Chamal1120/flutter-nic-decoder/refs/heads/main/repo-assets/Screenshot_1.webp" height="400px">
 </div>
 
 ## About

@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+/// A class representing the Catppuccin Mocha color palette.
+/// This class contains a collection of colors used for styling UI elements
+/// in the Catppuccin Mocha theme. Each color is represented as a `Color` value.
+///
+/// The colors are carefully selected to create a visually cohesive dark theme
+/// with a focus on subtle contrasts and pastel-like tones.
 class CatppuccinMocha {
   final Color rosewater;
   final Color flamingo;
@@ -58,6 +64,10 @@ class CatppuccinMocha {
   });
 
   // Catppuccin Mocha Theme Colors
+  /// The default Catppuccin Mocha theme color palette.
+  ///
+  /// This static instance provides all the colors in the Catppuccin Mocha
+  /// theme for consistent usage throughout the app.
   static const CatppuccinMocha flavor = CatppuccinMocha(
     rosewater: Color(0xFFF5E0DC),
     flamingo: Color(0xFFF2CDCD),
