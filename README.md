@@ -36,6 +36,7 @@ This is a flutter app to decode the <a href="https://en.wikipedia.org/wiki/Natio
 2. <a href="https://pub.dev/packages/url_launcher" target="blank">Url_launcher</a> and <a href="https://pub.dev/packages/flutter_linkify" target="blank">linkify</a> for launching web links
 3. <a href="https://pub.dev/packages/flutter_launcher_icons" target="blank">Flutter launcher icons</a> for generating launcher icons
 4. Flutter test for testing
+5. Dart doc for api documentation
 5. Github actions for CI/CD
 
 #### Folder Structure
@@ -60,9 +61,13 @@ This is a flutter app to decode the <a href="https://en.wikipedia.org/wiki/Natio
 
 > Wireframe and design files are available through [Figma](https://www.figma.com/design/yed2MidDLrrxfuOhOy0JMF/flutter_nic_decoder_prototype?node-id=0-1&t=9adQaX9o6tSPwVD2-1).
 
+#### API documentaion
+
+Docs are generated from **dart doc**, deployed with **GitHub Pages** and can be viewed from [here](https://chamal1120.github.io/slnic-decoder/).
+
 ## Installation
 
-1. Grab the latest apk from ***[releases](https://github.com/Chamal1120/flutter_nic_decoder/releases)***.
+1. Grab the latest apk installer from ***[releases](https://github.com/Chamal1120/flutter_nic_decoder/releases)***.
     - Chose the arm64-v8a version for most of the modern devices. (2016 and above)
     - Chose the armabi-v7a version for older devices.
 2. Enable apk sideloading on your device.
