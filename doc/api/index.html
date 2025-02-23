@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="slnic_decoder API docs, for the Dart programming language.">
+  <title>slnic_decoder - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li class="self-crumb">slnic_decoder package</li>
+  </ol>
+  <div class="self-name">slnic_decoder</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button" title="Toggle brightness">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        light_mode
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <div align="center">
+<img src="https://raw.githubusercontent.com/Chamal1120/flutter-nic-decoder/refs/heads/main/repo-assets/app-logo.svg">
+<h1 id="slnic-decoder">SLNIC Decoder</h1>
+<p><img src="https://raw.githubusercontent.com/Chamal1120/flutter-nic-decoder/refs/heads/main/.github/assets/test-status.svg" alt="Test Status">
+<img src="https://raw.githubusercontent.com/Chamal1120/flutter-nic-decoder/refs/heads/main/.github/assets/build-status.svg" alt="Build Status">
+<img src="https://img.shields.io/github/v/release/Chamal1120/flutter-nic-decoder?display_name=release&amp;style=for-the-badge&amp;logo=android&amp;logoColor=ffffff&amp;color=%23fab387" alt="GitHub Release">
+<img src="https://img.shields.io/badge/code_style-dart_analyzer-%230075BA?style=for-the-badge&amp;logo=coder" alt="Static Badge"></p>
+<p><a href="#about">About</a> · <a href="#features">Features</a> · <a href="#inside">Inside</a> · <a href="#installation">Installation</a> · <a href="#compilation">Compilation</a> · <a href="#development">Development</a></p>
+</div>
+<br>
+<div align="center">
+   <img src="https://raw.githubusercontent.com/Chamal1120/flutter-nic-decoder/refs/heads/main/repo-assets/Screenshot_1.webp" height="400px">
+</div>
+<h2 id="about">About</h2>
+<p>This is a flutter app to decode the <a href="https://en.wikipedia.org/wiki/National_identity_card_(Sri_Lanka)#NIC_number" target="blank"><strong>Sri Lankan NIC (National Identity Card)</strong></a> number, developed as the final project for the CCS3351 Mobile Application Development module of University.</p>
+<h2 id="features">Features</h2>
+<ol>
+<li>Extracts Date of birth, gender and person's ability to vote</li>
+<li>Material 3 design</li>
+</ol>
+<h2 id="inside">Inside</h2>
+<h4 id="technologies">Technologies</h4>
+<ol>
+<li><a href="https://github.com/jonataslaw/getx" target="blank">GetX</a> for State Management</li>
+<li><a href="https://pub.dev/packages/url_launcher" target="blank">Url_launcher</a> and <a href="https://pub.dev/packages/flutter_linkify" target="blank">linkify</a> for launching web links</li>
+<li><a href="https://pub.dev/packages/flutter_launcher_icons" target="blank">Flutter launcher icons</a> for generating launcher icons</li>
+<li>Flutter test for testing</li>
+<li>Github actions for CI/CD</li>
+</ol>
+<h4 id="folder-structure">Folder Structure</h4>
+<ol>
+<li><strong>lib</strong> - Contains all the code for the application
+<ul>
+<li><strong>model</strong> - Contains the data model for the NIC with the decoding logic</li>
+<li><strong>controllers</strong> - Contains the GetX controllers for NIC decoding and Navigation</li>
+<li><strong>screens</strong> - Contains the UI screens</li>
+<li><strong>main.dart</strong> - Entry point of the app</li>
+</ul>
+</li>
+<li><strong>test</strong> - Contains all the test files
+<ul>
+<li><strong>models</strong> - Contains the tests for the NIC model</li>
+<li><strong>controllers</strong> - Contains the tests for the GetX controllers</li>
+</ul>
+</li>
+<li><strong>.github</strong> - Contains the github actions workflow files</li>
+<li><strong>assets</strong> - Contains the app logo and other assets</li>
+</ol>
+<h4 id="design">Design</h4>
+<ul>
+<li><strong>Material 3</strong> - The app follows the Material 3 design guidelines</li>
+<li><strong>Custom Icons</strong> - Custom icons are used for the app logo and the launcher icon</li>
+<li><strong>Brand Icons</strong> - Brand icons are taken from the simpleicons.org</li>
+<li><strong>Colors</strong> - The app uses a custom color palette inspired by Catppuccin mocha theme</li>
+</ul>
+<blockquote>
+<p>Wireframe and design files are available through the <a href="https://www.figma.com/design/yed2MidDLrrxfuOhOy0JMF/flutter_nic_decoder_prototype?node-id=0-1&amp;t=9adQaX9o6tSPwVD2-1">Figma</a>.</p>
+</blockquote>
+<h2 id="installation">Installation</h2>
+<ol>
+<li>Grab the latest apk from <em><strong><a href="https://github.com/Chamal1120/flutter_nic_decoder/releases">releases</a></strong></em>.
+<ul>
+<li>Chose the arm64-v8a version for most of the modern devices. (2016 and above)</li>
+<li>Chose the armabi-v7a version for older devices.</li>
+</ul>
+</li>
+<li>Enable apk sideloading on your device.</li>
+<li>Open up the <code>nic-app-v.x.x.x.apk</code> file and follow the instructions.</li>
+</ol>
+<div class="markdown-alert markdown-alert-note">
+<p class="markdown-alert-title">Note</p>
+<p>As of now, installation packages are only available for android devices. If you wish to use this app on an iOS device, you will have to compile it from source. See <a href="#compilation">compilation</a> for more information.</p>
+</div>
+<h2 id="compilation">Compilation</h2>
+<h4 id="prerequisites">Prerequisites</h4>
+<ol>
+<li>Flutter SDK 3.6.0 or above</li>
+<li>Android studio latest</li>
+</ol>
+<h4 id="steps">Steps</h4>
+<ol>
+<li>Clone the repository and change to the directory:</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">git clone https://github.com/Chamal1120/flutter_nic_decoder.git
+cd flutter_nic_decoder
+</code></pre>
+<ol start="2">
+<li>Sync the packages:</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">flutter pub get
+</code></pre>
+<ol start="3">
+<li>Compile for your device:</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">flutter build apk --release # For android
+flutter build ios --release # For ios
+</code></pre>
+<h2 id="development">Development</h2>
+<h4 id="prerequisites-2">Prerequisites</h4>
+<ol>
+<li>Flutter SDK 3.6.0 or above</li>
+<li>Android Studio latest</li>
+<li>Code editor that supports Flutter Development (VSCode, Android Studio, Neovim, etc.)</li>
+<li>Emulator configured through Android studio or AVD Manager (or a physical device)</li>
+</ol>
+<h4 id="steps-2">Steps</h4>
+<ol>
+<li>Follow step 1 and 2 from <a href="#compilation">compilation</a> section.</li>
+<li>Run the emulator or connect your physical device:</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">flutter devices # To list all the devices
+flutter emulators --launch &lt;emulator_name&gt; # To launch an emulator
+</code></pre>
+<ol start="3">
+<li>Run the app in debug mode:</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">flutter run
+</code></pre>
+<ol start="4">
+<li>Open up <strong>lib</strong> folder (where most of the code lives) and start developing.</li>
+</ol>
+<h2 id="thank-you">Thank You</h2>
+<p>You're a cool human being if you read it up to here.</p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="nav_controller">
+  <span class="name"><a href="controllers_nav_controller/controllers_nav_controller-library.html">controllers/nav_controller</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="nic_controller">
+  <span class="name"><a href="controllers_nic_controller/controllers_nic_controller-library.html">controllers/nic_controller</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="main">
+  <span class="name"><a href="main/main-library.html">main</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="nic_info">
+  <span class="name"><a href="models_nic_info/models_nic_info-library.html">models/nic_info</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="about">
+  <span class="name"><a href="screens_about/screens_about-library.html">screens/about</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="home">
+  <span class="name"><a href="screens_home/screens_home-library.html">screens/home</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="result">
+  <span class="name"><a href="screens_result/screens_result-library.html">screens/result</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="palette">
+  <span class="name"><a href="theme_palette/theme_palette-library.html">theme/palette</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="theme">
+  <span class="name"><a href="theme_theme/theme_theme-library.html">theme/theme</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+        </dl>
+      </section>
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li class="self-crumb">slnic_decoder package</li>
+</ol>
+
+    <h5 class="hidden-xs"><span class="package-name">slnic_decoder</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="controllers_nav_controller/controllers_nav_controller-library.html">controllers/nav_controller</a></li>
+      <li><a href="controllers_nic_controller/controllers_nic_controller-library.html">controllers/nic_controller</a></li>
+      <li><a href="main/main-library.html">main</a></li>
+      <li><a href="models_nic_info/models_nic_info-library.html">models/nic_info</a></li>
+      <li><a href="screens_about/screens_about-library.html">screens/about</a></li>
+      <li><a href="screens_home/screens_home-library.html">screens/home</a></li>
+      <li><a href="screens_result/screens_result-library.html">screens/result</a></li>
+      <li><a href="theme_palette/theme_palette-library.html">theme/palette</a></li>
+      <li><a href="theme_theme/theme_theme-library.html">theme/theme</a></li>
+</ol>
+
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+</main>
+<footer>
+  <span class="no-break">
+    slnic_decoder
+      0.1.5+4
+  </span>
+  
+</footer>
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the NicInfo.from9Digit constructor from Class NicInfo from the nic_info library, for the Dart programming language.">
+  <title>NicInfo.from9Digit constructor - NicInfo - nic_info library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">slnic_decoder</a></li>
+    <li><a href="../../models_nic_info/models_nic_info-library.html">models&#47;nic_info.dart</a></li>
+    <li><a href="../../models_nic_info/NicInfo-class.html">NicInfo</a></li>
+    <li class="self-crumb">NicInfo.from9Digit factory constructor</li>
+  </ol>
+  <div class="self-name">NicInfo.from9Digit</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button" title="Toggle brightness">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        light_mode
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="models_nic_info&#47;NicInfo-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">NicInfo.from9Digit</span> constructor 
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+      <span class="name ">NicInfo.from9Digit</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="from9Digit-param-nicVal"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">nicVal</span></span></li>
+</ol>)
+    </section>
+    
+<section class="desc markdown">
+  <p>Creates a <code>NicInfo</code> object from a <strong>9-digit</strong> Sri Lankan NIC number.</p>
+<ul>
+<li>
+<p><strong>Example</strong>: <code>"901234567V"</code></p>
+</li>
+<li>
+<p>Extracts birth year, birth date, and gender.</p>
+</li>
+<li>
+<p>Determines the serial number and votability.</p>
+</li>
+<li>
+<p>Calculates age and weekday of birth.</p>
+</li>
+</ul>
+<p>Returns a <code>NicInfo</code> object containing the extracted information.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">factory NicInfo.from9Digit(String nicVal) {
+  String gender = &quot;Male&quot;;
+  String votability = &quot;No&quot;;
+  String serialNo = nicVal.substring(5, 9);
+  String nicLetter = nicVal.substring(9).toLowerCase();
+  int birthYear = int.parse(&quot;19${nicVal.substring(0, 2)}&quot;);
+  int birthCode = int.parse(nicVal.substring(2, 5));
+
+  &#47;&#47; Check gender
+  if (birthCode &gt; 500) {
+    birthCode -= 500;
+    gender = &quot;Female&quot;;
+  }
+
+  &#47;&#47; Determine birth month and day
+  int remainingDays = birthCode;
+  int month = 1;
+
+  while (remainingDays &gt; daysInMonths[month - 1]) {
+    remainingDays -= daysInMonths[month - 1];
+    month++;
+  }
+
+  int day = remainingDays;
+
+  &#47;&#47; Handle 29th feb in non-leap years
+  if (month == 2 &amp;&amp; day == 29 &amp;&amp; !isLeapYear(birthYear)) {
+    month = 3;
+    day = 1;
+  }
+
+  String birthDate =
+      &#39;$birthYear&#47;${month.toString().padLeft(2, &#39;0&#39;)}&#47;${day.toString().padLeft(2, &#39;0&#39;)}&#39;;
+
+  &#47;&#47; Determine weekday of birth
+  DateTime date = DateTime.parse(birthDate.replaceAll(&quot;&#47;&quot;, &quot;-&quot;));
+  String dayOfWeek = weekdays[date.weekday - 1];
+
+  &#47;&#47; Calculate age
+  DateTime today = DateTime.now();
+  int age = today.year - birthYear;
+  if (today.month &lt; month || (today.month == month &amp;&amp; today.day &lt; day)) {
+    age--;
+  }
+  String ageString = &quot;${age.toString()} Years&quot;;
+
+  &#47;&#47; Check votability
+  if (nicLetter == &quot;v&quot;) {
+    votability = &quot;Yes&quot;;
+  }
+
+  return NicInfo(
+    nicNo: nicVal,
+    format: &quot;Old&quot;,
+    serialNo: serialNo,
+    birthDate: birthDate,
+    weekDay: dayOfWeek,
+    age: ageString,
+    gender: gender,
+    votability: votability,
+  );
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">slnic_decoder</a></li>
+    <li><a href="../../models_nic_info/models_nic_info-library.html">nic_info</a></li>
+    <li><a href="../../models_nic_info/NicInfo-class.html">NicInfo</a></li>
+    <li class="self-crumb">NicInfo.from9Digit factory constructor</li>
+</ol>
+
+    <h5>NicInfo class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    slnic_decoder
+      0.1.5+4
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+
