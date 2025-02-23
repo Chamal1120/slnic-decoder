@@ -1,3 +1,9 @@
+## v1.0.0+2
+# What's new?
+
+## Features
+- First stable release
+
 ## Upon here stable versions started rolling and switched to proper semver
 ###############################################################################
 
