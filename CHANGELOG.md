@@ -1,3 +1,10 @@
+## v0.1.6+1
+# What's new?
+
+## Features
+- Improve input validation
+- Add weekday of born to result screen
+
 ## v0.1.5+4
 # What's new?
 
