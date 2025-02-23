@@ -48,10 +48,14 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 20.0),
           ElevatedButton(
             onPressed: () {
-              // Get the NIC number from the TextField
+              // Check if the input is empty
+              if (textNicController.text.isEmpty) {
+                _showSnackBar(context, "Please Enter an NIC number!");
+                return;
+              }
+
+              // Remove extra spaces
               String nicVal = textNicController.text.trim();
-              // Create a temp variable to store the NIC number
-              String checkString = nicVal;
 
               // Check if the NIC number is of the correct length
               if (nicVal.length != 10 && nicVal.length != 12) {
@@ -59,15 +63,22 @@ class HomePage extends StatelessWidget {
                 return;
               }
 
-              // Check if the NIC number is in the correct format
+              // Further validate 9 digit NIC number
               if (nicVal.length == 10) {
-                checkString = nicVal.substring(0, nicVal.length - 1);
-              } else if (nicVal.isEmpty) {
-                _showSnackBar(context, "Please Enter a NIC number!");
-                return;
-              } else if (int.tryParse(checkString) == null) {
-                _showSnackBar(context, "Please Enter a valid NIC number!");
-                return;
+                String checkString = nicVal.substring(0, nicVal.length - 1);
+                String checkLetter = nicVal.substring(9).toLowerCase();
+
+                // Check if the last letter is valid
+                if (!["x", "v"].contains(checkLetter)) {
+                  _showSnackBar(context, "$checkLetter is invalid");
+                  return;
+                }
+
+                // Check if the remaning part is a number
+                if (int.tryParse(checkString) == null) {
+                  _showSnackBar(context, "Please Enter a valid NIC number!");
+                  return;
+                }
               }
 
               // Decode the NIC number using the nicController
@@ -99,4 +110,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
