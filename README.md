@@ -58,7 +58,7 @@ This is a flutter app to decode the <a href="https://en.wikipedia.org/wiki/Natio
 * **Brand Icons** - Brand icons are taken from the simpleicons.org
 * **Colors** - The app uses a custom color palette inspired by Catppuccin mocha theme
 
-> Wireframe and design files are available through the [Figma](https://www.figma.com/design/yed2MidDLrrxfuOhOy0JMF/flutter_nic_decoder_prototype?node-id=0-1&t=9adQaX9o6tSPwVD2-1).
+> Wireframe and design files are available through [Figma](https://www.figma.com/design/yed2MidDLrrxfuOhOy0JMF/flutter_nic_decoder_prototype?node-id=0-1&t=9adQaX9o6tSPwVD2-1).
 
 ## Installation
 
@@ -126,6 +126,10 @@ flutter run
 ```
 
 4. Open up **lib** folder (where most of the code lives) and start developing.
+
+> ![WARNING]
+> This is an unlicensed project, as i'm doing it for a assignment in one of my University module.
+> I might later add an **MIT license** so anyone can use this for whatever purposes.
 
 ## Thank You
 
