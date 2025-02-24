@@ -36,22 +36,22 @@ This is a flutter app to decode the <a href="https://en.wikipedia.org/wiki/Natio
 1. <a href="https://github.com/jonataslaw/getx" target="blank">GetX</a> for State Management
 2. <a href="https://pub.dev/packages/url_launcher" target="blank">Url_launcher</a> and <a href="https://pub.dev/packages/flutter_linkify" target="blank">linkify</a> for launching web links
 3. <a href="https://pub.dev/packages/flutter_launcher_icons" target="blank">Flutter launcher icons</a> for generating launcher icons
-4. Flutter test for testing
+4. Flutter test and mockito for testing
 5. Dart doc for api documentation
 5. Github actions for CI/CD
 
 #### Folder Structure
 
-1. **lib** - Contains all the code for the application
+1. **.github** - Contains the github actions workflow files
+2. **assets** - Contains the app launcher icon and other assets
+3. **docs** - Contains the auto-generated dart doc
+3. **lib** - Contains all the code for the application
    - **model** - Contains the data model for the NIC with the decoding logic
    - **controllers** - Contains the GetX controllers for NIC decoding and Navigation
    - **screens** - Contains the UI screens
    - **main.dart** - Entry point of the app
-2. **test** - Contains all the test files
-   - **models** - Contains the tests for the NIC model
+4. **test** - Contains all the test files
    - **controllers** - Contains the tests for the GetX controllers
-3. **.github** - Contains the github actions workflow files
-4. **assets** - Contains the app logo and other assets
 
 #### Design
 
@@ -134,8 +134,8 @@ flutter run
 4. Open up **lib** folder (where most of the code lives) and start developing.
 
 > [!WARNING]
-> This is an unlicensed project, as i'm doing it for an assignment in one of my University modules.
-> I might later add an **MIT license** so anyone can use this for whatever purposes.
+> This is an **unlicensed project**, as i'm doing it for an assignment in one of my University modules.
+> I might later add an MIT license after when asignment has graded so anyone can use this for whatever purposes.
 
 ## Thank You
 
