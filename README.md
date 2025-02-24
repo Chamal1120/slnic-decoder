@@ -17,6 +17,7 @@
 
 <div align="center">
    <img src="https://raw.githubusercontent.com/Chamal1120/flutter-nic-decoder/refs/heads/main/repo-assets/Screenshot_1.webp" height="400px">
+   <img src="https://raw.githubusercontent.com/Chamal1120/flutter-nic-decoder/refs/heads/main/repo-assets/Screenshot_2.webp" height="400px">
 </div>
 
 ## About
