@@ -135,7 +135,14 @@ Widget build(BuildContext context) {
     ),
     body: Container(
       decoration: BoxDecoration(
-        gradient: catppuccinMochaGradient,
+        gradient: LinearGradient(
+          colors: [
+            Theme.of(context).colorScheme.tertiary,
+            Theme.of(context).colorScheme.onTertiary,
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
       ),
 
       &#47;&#47; Update the body based on the selected page
@@ -177,7 +184,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     slnic_decoder
-      1.0.0+2
+      1.1.0+3
   </span>
   
 </footer>

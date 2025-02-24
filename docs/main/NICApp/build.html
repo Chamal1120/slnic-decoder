@@ -112,15 +112,18 @@ and</li>
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
+  final ThemeController themeController = Get.find();
+
   return GetMaterialApp(
     debugShowCheckedModeBanner: false,
     title: &#39;Flutter NIC Decoder&#39;,
     darkTheme: darkCatppuccinTheme,
+    theme: lightCatppuccinTheme,
     &#47;*
     Enable dark mode by default
     (for now till the theme switcher is implemented :))
     *&#47;
-    themeMode: ThemeMode.dark,
+    themeMode: themeController.themeMode,
     home: NavBarM3(),
   );
 }</code></pre>
@@ -151,7 +154,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     slnic_decoder
-      1.0.0+2
+      1.1.0+3
   </span>
   
 </footer>

@@ -58,6 +58,7 @@
 <br>
 <div align="center">
    <img src="https://raw.githubusercontent.com/Chamal1120/flutter-nic-decoder/refs/heads/main/repo-assets/Screenshot_1.webp" height="400px">
+   <img src="https://raw.githubusercontent.com/Chamal1120/flutter-nic-decoder/refs/heads/main/repo-assets/Screenshot_2.webp" height="400px">
 </div>
 <h2 id="about">About</h2>
 <p>This is a flutter app to decode the <a href="https://en.wikipedia.org/wiki/National_identity_card_(Sri_Lanka)#NIC_number" target="blank"><strong>Sri Lankan NIC (National Identity Card)</strong></a> number, developed as the final project for the CCS3351 Mobile Application Development module of University.</p>
@@ -72,11 +73,15 @@
 <li><a href="https://github.com/jonataslaw/getx" target="blank">GetX</a> for State Management</li>
 <li><a href="https://pub.dev/packages/url_launcher" target="blank">Url_launcher</a> and <a href="https://pub.dev/packages/flutter_linkify" target="blank">linkify</a> for launching web links</li>
 <li><a href="https://pub.dev/packages/flutter_launcher_icons" target="blank">Flutter launcher icons</a> for generating launcher icons</li>
-<li>Flutter test for testing</li>
+<li>Flutter test and mockito for testing</li>
+<li>Dart doc for api documentation</li>
 <li>Github actions for CI/CD</li>
 </ol>
 <h4 id="folder-structure">Folder Structure</h4>
 <ol>
+<li><strong>.github</strong> - Contains the github actions workflow files</li>
+<li><strong>assets</strong> - Contains the app launcher icon and other assets</li>
+<li><strong>docs</strong> - Contains the auto-generated dart doc</li>
 <li><strong>lib</strong> - Contains all the code for the application
 <ul>
 <li><strong>model</strong> - Contains the data model for the NIC with the decoding logic</li>
@@ -87,12 +92,9 @@
 </li>
 <li><strong>test</strong> - Contains all the test files
 <ul>
-<li><strong>models</strong> - Contains the tests for the NIC model</li>
 <li><strong>controllers</strong> - Contains the tests for the GetX controllers</li>
 </ul>
 </li>
-<li><strong>.github</strong> - Contains the github actions workflow files</li>
-<li><strong>assets</strong> - Contains the app logo and other assets</li>
 </ol>
 <h4 id="design">Design</h4>
 <ul>
@@ -104,9 +106,11 @@
 <blockquote>
 <p>Wireframe and design files are available through <a href="https://www.figma.com/design/yed2MidDLrrxfuOhOy0JMF/flutter_nic_decoder_prototype?node-id=0-1&amp;t=9adQaX9o6tSPwVD2-1">Figma</a>.</p>
 </blockquote>
+<h4 id="api-documentaion">API documentaion</h4>
+<p>Docs are generated from <strong>dart doc</strong>, deployed with <strong>GitHub Pages</strong> and can be viewed from <a href="https://chamal1120.github.io/slnic-decoder/">here</a>.</p>
 <h2 id="installation">Installation</h2>
 <ol>
-<li>Grab the latest apk from <em><strong><a href="https://github.com/Chamal1120/flutter_nic_decoder/releases">releases</a></strong></em>.
+<li>Grab the latest apk installer from <em><strong><a href="https://github.com/Chamal1120/flutter_nic_decoder/releases">releases</a></strong></em>.
 <ul>
 <li>Chose the arm64-v8a version for most of the modern devices. (2016 and above)</li>
 <li>Chose the armabi-v7a version for older devices.</li>
@@ -167,11 +171,11 @@ flutter emulators --launch &lt;emulator_name&gt; # To launch an emulator
 <ol start="4">
 <li>Open up <strong>lib</strong> folder (where most of the code lives) and start developing.</li>
 </ol>
-<blockquote>
-<p>![WARNING]
-This is an unlicensed project, as i'm doing it for a assignment in one of my University module.
-I might later add an <strong>MIT license</strong> so anyone can use this for whatever purposes.</p>
-</blockquote>
+<div class="markdown-alert markdown-alert-warning">
+<p class="markdown-alert-title">Warning</p>
+<p>This is an <strong>unlicensed project</strong>, as i'm doing it for an assignment in one of my University modules.
+I might later add an MIT license after when asignment has graded so anyone can use this for whatever purposes.</p>
+</div>
 <h2 id="thank-you">Thank You</h2>
 <p>You're a cool human being if you read it up to here.</p>
 </section>
@@ -189,6 +193,13 @@ I might later add an <strong>MIT license</strong> so anyone can use this for wha
 
           <dt id="nic_controller">
   <span class="name"><a href="controllers_nic_controller/controllers_nic_controller-library.html">controllers/nic_controller</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="theme_controller">
+  <span class="name"><a href="controllers_theme_controller/controllers_theme_controller-library.html">controllers/theme_controller</a></span> 
 
 </dt>
 <dd>
@@ -236,8 +247,15 @@ I might later add an <strong>MIT license</strong> so anyone can use this for wha
 <dd>
 </dd>
 
-          <dt id="theme">
-  <span class="name"><a href="theme_theme/theme_theme-library.html">theme/theme</a></span> 
+          <dt id="theme_dark">
+  <span class="name"><a href="theme_theme_dark/theme_theme_dark-library.html">theme/theme_dark</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="theme_light">
+  <span class="name"><a href="theme_theme_light/theme_theme_light-library.html">theme/theme_light</a></span> 
 
 </dt>
 <dd>
@@ -262,13 +280,15 @@ I might later add an <strong>MIT license</strong> so anyone can use this for wha
       <li class="section-title">Libraries</li>
       <li><a href="controllers_nav_controller/controllers_nav_controller-library.html">controllers/nav_controller</a></li>
       <li><a href="controllers_nic_controller/controllers_nic_controller-library.html">controllers/nic_controller</a></li>
+      <li><a href="controllers_theme_controller/controllers_theme_controller-library.html">controllers/theme_controller</a></li>
       <li><a href="main/main-library.html">main</a></li>
       <li><a href="models_nic_info/models_nic_info-library.html">models/nic_info</a></li>
       <li><a href="screens_about/screens_about-library.html">screens/about</a></li>
       <li><a href="screens_home/screens_home-library.html">screens/home</a></li>
       <li><a href="screens_result/screens_result-library.html">screens/result</a></li>
       <li><a href="theme_palette/theme_palette-library.html">theme/palette</a></li>
-      <li><a href="theme_theme/theme_theme-library.html">theme/theme</a></li>
+      <li><a href="theme_theme_dark/theme_theme_dark-library.html">theme/theme_dark</a></li>
+      <li><a href="theme_theme_light/theme_theme_light-library.html">theme/theme_light</a></li>
 </ol>
 
   </div>
@@ -278,7 +298,7 @@ I might later add an <strong>MIT license</strong> so anyone can use this for wha
 <footer>
   <span class="no-break">
     slnic_decoder
-      1.0.0+2
+      1.1.0+3
   </span>
   
 </footer>

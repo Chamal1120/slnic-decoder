@@ -115,7 +115,14 @@ Widget build(BuildContext context) {
   return Scaffold(
     body: Container(
       decoration: BoxDecoration(
-        gradient: catppuccinMochaGradient,
+        gradient: LinearGradient(
+          colors: [
+            Theme.of(context).colorScheme.tertiary,
+            Theme.of(context).colorScheme.onTertiary,
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
       ),
       child: Padding(
         padding: const EdgeInsets.all(30.0),
@@ -128,7 +135,7 @@ Widget build(BuildContext context) {
                 Icon(
                   Icons.check_circle_outline_rounded,
                   size: 150.0,
-                  color: mocha.green,
+                  color: theme.green,
                 ),
                 SizedBox(
                   height: 10.0,
@@ -182,7 +189,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     slnic_decoder
-      1.0.0+2
+      1.1.0+3
   </span>
   
 </footer>
