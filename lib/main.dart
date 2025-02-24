@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:slnic_decoder/controllers/nav_controller.dart';
+import 'package:slnic_decoder/controllers/theme_controller.dart';
 import 'package:get/get.dart';
-import 'package:slnic_decoder/theme/theme.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:slnic_decoder/theme/theme_dark.dart';
+import 'package:slnic_decoder/theme/theme_light.dart';
 import 'package:slnic_decoder/screens/home.dart';
 import 'package:slnic_decoder/screens/about.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
+  Get.put(ThemeController());
   runApp(const NICApp());
 }
 
@@ -17,15 +22,18 @@ class NICApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter NIC Decoder',
       darkTheme: darkCatppuccinTheme,
+      theme: lightCatppuccinTheme,
       /* 
       Enable dark mode by default 
       (for now till the theme switcher is implemented :)) 
       */
-      themeMode: ThemeMode.dark,
+      themeMode: themeController.themeMode,
       home: NavBarM3(),
     );
   }
@@ -69,7 +77,14 @@ class NavBarM3 extends StatelessWidget {
       ),
       body: Container(
         decoration: BoxDecoration(
-          gradient: catppuccinMochaGradient,
+          gradient: LinearGradient(
+            colors: [
+              Theme.of(context).colorScheme.tertiary,
+              Theme.of(context).colorScheme.onTertiary,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
         ),
 
         // Update the body based on the selected page
@@ -85,4 +100,3 @@ class NavBarM3 extends StatelessWidget {
     );
   }
 }
-

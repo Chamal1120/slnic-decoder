@@ -6,21 +6,10 @@ import 'package:flutter/material.dart';
 ///
 /// The colors are carefully selected to create a visually cohesive dark theme
 /// with a focus on subtle contrasts and pastel-like tones.
-class CatppuccinMocha {
-  final Color rosewater;
-  final Color flamingo;
-  final Color pink;
-  final Color mauve;
+class Catppuccin {
   final Color red;
-  final Color maroon;
-  final Color peach;
-  final Color yellow;
+  final Color primary;
   final Color green;
-  final Color teal;
-  final Color sky;
-  final Color sapphire;
-  final Color blue;
-  final Color lavender;
   final Color text;
   final Color subtext1;
   final Color subtext0;
@@ -34,21 +23,10 @@ class CatppuccinMocha {
   final Color mantle;
   final Color crust;
 
-  const CatppuccinMocha({
-    required this.rosewater,
-    required this.flamingo,
-    required this.pink,
-    required this.mauve,
+  const Catppuccin({
     required this.red,
-    required this.maroon,
-    required this.peach,
-    required this.yellow,
+    required this.primary,
     required this.green,
-    required this.teal,
-    required this.sky,
-    required this.sapphire,
-    required this.blue,
-    required this.lavender,
     required this.text,
     required this.subtext1,
     required this.subtext0,
@@ -63,26 +41,15 @@ class CatppuccinMocha {
     required this.crust,
   });
 
-  // Catppuccin Mocha Theme Colors
-  /// The default Catppuccin Mocha theme color palette.
+  // Catppuccin Theme Colors
+  /// The default Catppuccin theme color palette.
   ///
   /// This static instance provides all the colors in the Catppuccin Mocha
   /// theme for consistent usage throughout the app.
-  static const CatppuccinMocha flavor = CatppuccinMocha(
-    rosewater: Color(0xFFF5E0DC),
-    flamingo: Color(0xFFF2CDCD),
-    pink: Color(0xFFF5C2E7),
-    mauve: Color(0xFFCBA6F7),
+  static const Catppuccin mocha = Catppuccin(
     red: Color(0xFFF38BA8),
-    maroon: Color(0xFFEBA0AC),
-    peach: Color(0xFFFAB387),
-    yellow: Color(0xFFF9E2AF),
+    primary: Color(0xFFF9E2AF),
     green: Color(0xFFA6E3A1),
-    teal: Color(0xFF94E2D5),
-    sky: Color(0xFF89DCEB),
-    sapphire: Color(0xFF74C7EC),
-    blue: Color(0xFF89B4FA),
-    lavender: Color(0xFFB4BEFE),
     text: Color(0xFFCDD6F4),
     subtext1: Color(0xFFBAC2DE),
     subtext0: Color(0xFFA6ADC8),
@@ -95,5 +62,26 @@ class CatppuccinMocha {
     base: Color(0xFF1E1E2E),
     mantle: Color(0xFF181825),
     crust: Color(0xFF11111B),
+  )
+  ;
+
+  /// This static instance provides all the colors in the Catppuccin Latte
+  /// theme for consistent usage throughout the app.
+  static const Catppuccin latte = Catppuccin(
+    red: Color(0xFFF38BA8),
+    primary: Color(0xFF1E1E2E),
+    green: Color(0xFF40A02B),
+    text: Color(0xFF4C4F69),
+    subtext1: Color(0xFF5C5F77),
+    subtext0: Color(0xFF6C6F85),
+    overlay2: Color(0xFF7C7F93),
+    overlay1: Color(0xFF8C8FA1),
+    overlay0: Color(0xFF9CA0B0),
+    surface2: Color(0xFFACB0BE),
+    surface1: Color(0xFFBCC0CC),
+    surface0: Color(0xFFDCE0E8),
+    base: Color(0xFFF9E2AF),
+    mantle: Color(0xFFF9E2AF),
+    crust: Color(0xFFE5C890),
   );
 }

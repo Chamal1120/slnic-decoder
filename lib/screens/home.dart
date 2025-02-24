@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:slnic_decoder/controllers/nic_controller.dart';
+import 'package:slnic_decoder/controllers/theme_controller.dart';
 import 'package:get/get.dart';
 import 'package:slnic_decoder/screens/result.dart';
 
@@ -22,72 +23,139 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            'SLNIC Decoder',
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          const SizedBox(height: 100.0),
-          TextField(
-            // Define the controller for the TextField
-            controller: textNicController,
-            style: Theme.of(context).textTheme.labelMedium,
-            textAlign: TextAlign.center,
-            decoration: InputDecoration(
-              suffixIcon: IconButton(
-                icon: Icon(Icons.clear_rounded),
-                iconSize: 18.0,
-                onPressed: () {
-                  textNicController.clear();
-                },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.onTertiary,
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 15.0,
+                    ),
+                    Text(
+                      "Theme",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                      ),
+                    ),
+                    IconButton(
+                      icon: Obx(
+                        () {
+                          var themeMode = Get.find<ThemeController>().themeMode;
+                          IconData icon;
+
+                          if (themeMode == ThemeMode.dark) {
+                            icon = Icons.dark_mode;
+                          } else if (themeMode == ThemeMode.light) {
+                            icon = Icons.light_mode;
+                          } else {
+                            icon = Icons.brightness_auto;
+                          }
+
+                          return Icon(icon, size: 20.0);
+                        },
+                      ),
+                      onPressed: () {
+                        var themeController = Get.find<ThemeController>();
+                        ThemeMode currentMode = themeController.themeMode;
+
+                        // Cycle through System → Dark → Light → System
+                        ThemeMode newMode;
+                        if (currentMode == ThemeMode.system) {
+                          newMode = ThemeMode.dark;
+                        } else if (currentMode == ThemeMode.dark) {
+                          newMode = ThemeMode.light;
+                        } else {
+                          newMode = ThemeMode.system;
+                        }
+
+                        themeController.setThemeMode(newMode);
+                      },
+                    ),
+                  ],
+                ),
               ),
-              hintText: 'Enter your NIC Number here',
-            ),
+            ],
           ),
-          const SizedBox(height: 20.0),
-          ElevatedButton(
-            onPressed: () {
-              // Check if the input is empty
-              if (textNicController.text.isEmpty) {
-                _showSnackBar(context, "Please Enter an NIC number!");
-                return;
-              }
+          SizedBox(
+            height: 80.0,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'SLNIC Decoder',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              const SizedBox(height: 100.0),
+              TextField(
+                // Define the controller for the TextField
+                controller: textNicController,
+                style: Theme.of(context).textTheme.labelMedium,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.clear_rounded),
+                    iconSize: 18.0,
+                    onPressed: () {
+                      textNicController.clear();
+                    },
+                  ),
+                  hintText: 'Enter your NIC Number here',
+                ),
+              ),
+              const SizedBox(height: 20.0),
+              ElevatedButton(
+                onPressed: () {
+                  // Check if the input is empty
+                  if (textNicController.text.isEmpty) {
+                    _showSnackBar(context, "Please Enter an NIC number!");
+                    return;
+                  }
 
-              // Remove extra spaces
-              String nicVal = textNicController.text.trim();
+                  // Remove extra spaces
+                  String nicVal = textNicController.text.trim();
 
-              // Check if the NIC number is of the correct length
-              if (nicVal.length != 10 && nicVal.length != 12) {
-                _showSnackBar(context, "NIC number entered is wrong length!");
-                return;
-              }
+                  // Check if the NIC number is of the correct length
+                  if (nicVal.length != 10 && nicVal.length != 12) {
+                    _showSnackBar(
+                        context, "NIC number entered is wrong length!");
+                    return;
+                  }
 
-              // Further validate 9 digit NIC number
-              if (nicVal.length == 10) {
-                String checkString = nicVal.substring(0, nicVal.length - 1);
-                String checkLetter = nicVal.substring(9).toLowerCase();
+                  // Further validate 9 digit NIC number
+                  if (nicVal.length == 10) {
+                    String checkString = nicVal.substring(0, nicVal.length - 1);
+                    String checkLetter = nicVal.substring(9).toLowerCase();
 
-                // Check if the last letter is valid
-                if (!["x", "v"].contains(checkLetter)) {
-                  _showSnackBar(context, "$checkLetter is invalid");
-                  return;
-                }
+                    // Check if the last letter is valid
+                    if (!["x", "v"].contains(checkLetter)) {
+                      _showSnackBar(context, "$checkLetter is invalid");
+                      return;
+                    }
 
-                // Check if the remaning part is a number
-                if (int.tryParse(checkString) == null) {
-                  _showSnackBar(context, "Please Enter a valid NIC number!");
-                  return;
-                }
-              }
+                    // Check if the remaning part is a number
+                    if (int.tryParse(checkString) == null) {
+                      _showSnackBar(
+                          context, "Please Enter a valid NIC number!");
+                      return;
+                    }
+                  }
 
-              // Decode the NIC number using the nicController
-              nicController.decodeNic(nicVal);
-              Get.to(() => ResultPage());
-            },
-            child: Text(
-              'Decode',
-            ),
+                  // Decode the NIC number using the nicController
+                  nicController.decodeNic(nicVal);
+                  Get.to(() => ResultPage());
+                },
+                child: Text(
+                  'Decode',
+                ),
+              ),
+            ],
           ),
         ],
       ),

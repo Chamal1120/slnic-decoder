@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:slnic_decoder/theme/theme.dart';
+import 'package:slnic_decoder/theme/theme_dark.dart';
 import 'package:slnic_decoder/controllers/nic_controller.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +15,14 @@ class ResultPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: catppuccinMochaGradient,
+          gradient: LinearGradient(
+            colors: [
+              Theme.of(context).colorScheme.tertiary,
+              Theme.of(context).colorScheme.onTertiary,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(30.0),
@@ -28,7 +35,7 @@ class ResultPage extends StatelessWidget {
                   Icon(
                     Icons.check_circle_outline_rounded,
                     size: 150.0,
-                    color: mocha.green,
+                    color: theme.green,
                   ),
                   SizedBox(
                     height: 10.0,
@@ -79,9 +86,9 @@ class TableCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: mocha.crust,
-            blurRadius: 8,
-            offset: const Offset(0, 4),
+            color: Theme.of(context).colorScheme.tertiary,
+            blurRadius: 25,
+            offset: const Offset(0, 1),
           ),
         ],
       ),
@@ -112,11 +119,14 @@ class TableCard extends StatelessWidget {
               _buildTableRow(context, 'ID No', nicInfo?.nicNo ?? 'N/A'),
               _buildTableRow(context, 'Format', nicInfo?.format ?? 'N/A'),
               _buildTableRow(context, 'Serial No', nicInfo?.serialNo ?? 'N/A'),
-              _buildTableRow(context, 'Date of Birth', nicInfo?.birthDate ?? 'N/A'),
-              _buildTableRow(context, 'WeekDay of Birth', nicInfo?.weekDay ?? 'N/A'),
+              _buildTableRow(
+                  context, 'Date of Birth', nicInfo?.birthDate ?? 'N/A'),
+              _buildTableRow(
+                  context, 'WeekDay of Birth', nicInfo?.weekDay ?? 'N/A'),
               _buildTableRow(context, 'Age', nicInfo?.age ?? 'N/A'),
               _buildTableRow(context, 'Gender', nicInfo?.gender ?? 'N/A'),
-              _buildTableRow(context, 'Ability to Vote', nicInfo?.votability ?? 'N/A'),
+              _buildTableRow(
+                  context, 'Ability to Vote', nicInfo?.votability ?? 'N/A'),
             ],
           );
         },
@@ -161,4 +171,3 @@ class TableCard extends StatelessWidget {
     );
   }
 }
-
