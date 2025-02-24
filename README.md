@@ -132,8 +132,8 @@ flutter run
 
 4. Open up **lib** folder (where most of the code lives) and start developing.
 
-> ![WARNING]
-> This is an unlicensed project, as i'm doing it for a assignment in one of my University module.
+> [!WARNING]
+> This is an unlicensed project, as i'm doing it for an assignment in one of my University modules.
 > I might later add an **MIT license** so anyone can use this for whatever purposes.
 
 ## Thank You
