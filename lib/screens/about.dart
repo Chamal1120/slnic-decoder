@@ -21,7 +21,7 @@ class AboutPage extends StatelessWidget {
             height: 10.0,
           ),
           Text(
-            'v1.0.0+2',
+            'v1.1.0+3',
             style: Theme.of(context).textTheme.bodySmall,
           ),
           SizedBox(
