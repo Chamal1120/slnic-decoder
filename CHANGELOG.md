@@ -1,3 +1,9 @@
+## v1.1.0+3
+# What's new?
+
+## Features
+- Add experimental light mode
+
 ## v1.0.0+2
 # What's new?
 
