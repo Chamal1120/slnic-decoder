@@ -26,15 +26,16 @@ This is a flutter app to decode the <a href="https://en.wikipedia.org/wiki/Natio
 
 ## Features
 
-1. Extracts Date of birth, gender and person's ability to vote
+1. Extracts serial number of the ID, Date of birth, weekday of the birthdate, age, gender and person's ability to vote
 2. Material 3 design
+3. Dynamic dark/light theme support
 
 ## Inside
 
 #### Technologies
 
 1. <a href="https://github.com/jonataslaw/getx" target="blank">GetX</a> for State Management
-2. <a href="https://pub.dev/packages/url_launcher" target="blank">Url_launcher</a> and <a href="https://pub.dev/packages/flutter_linkify" target="blank">linkify</a> for launching web links
+2. <a href="https://pub.dev/packages/url_launcher" target="blank">Url_launcher</a> for launching web links
 3. <a href="https://pub.dev/packages/flutter_launcher_icons" target="blank">Flutter launcher icons</a> for generating launcher icons
 4. Flutter test and mockito for testing
 5. Dart doc for api documentation
