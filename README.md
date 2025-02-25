@@ -32,6 +32,21 @@ This is a flutter app to decode the <a href="https://en.wikipedia.org/wiki/Natio
 
 ## Inside
 
+#### Architecture
+
+> This a very high-level abstraction of the main business logic of the application.
+
+<img src="repo-assets/architecture.svg" width="800">
+
+#### Design
+
+* **Material 3** - The app follows the Material 3 design guidelines
+* **Custom Icons** - Custom icons are used for the app logo and the launcher icon
+* **Brand Icons** - Brand icons are taken from the simpleicons.org
+* **Colors** - The app uses a custom color palette inspired by Catppuccin mocha theme
+
+> Wireframe and design files are available through [Figma](https://www.figma.com/design/yed2MidDLrrxfuOhOy0JMF/flutter_nic_decoder_prototype?node-id=0-1&t=9adQaX9o6tSPwVD2-1).
+
 #### Technologies
 
 1. <a href="https://github.com/jonataslaw/getx" target="blank">GetX</a> for State Management
@@ -54,14 +69,9 @@ This is a flutter app to decode the <a href="https://en.wikipedia.org/wiki/Natio
 4. **test** - Contains all the test files
    - **controllers** - Contains the tests for the GetX controllers
 
-#### Design
+#### Widget Tree
 
-* **Material 3** - The app follows the Material 3 design guidelines
-* **Custom Icons** - Custom icons are used for the app logo and the launcher icon
-* **Brand Icons** - Brand icons are taken from the simpleicons.org
-* **Colors** - The app uses a custom color palette inspired by Catppuccin mocha theme
-
-> Wireframe and design files are available through [Figma](https://www.figma.com/design/yed2MidDLrrxfuOhOy0JMF/flutter_nic_decoder_prototype?node-id=0-1&t=9adQaX9o6tSPwVD2-1).
+Flutter outline and abstracted widget tree can be viewed from [here](WidgetTree.md).
 
 #### API documentaion
 
