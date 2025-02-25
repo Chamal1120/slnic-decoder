@@ -80,8 +80,8 @@ Docs are generated from **dart doc**, deployed with **GitHub Pages** and can be 
 ## Installation
 
 1. Grab the latest apk installer from ***[releases](https://github.com/Chamal1120/flutter_nic_decoder/releases)***.
-    - Chose the arm64-v8a version for most of the modern devices. (2016 and above)
-    - Chose the armabi-v7a version for older devices.
+    - Choose the arm64-v8a version for most of the modern devices. (2016 and above)
+    - Choose the armabi-v7a version for older devices.
 2. Enable apk sideloading on your device.
 3. Open up the `nic-app-v.x.x.x.apk` file and follow the instructions.
 
