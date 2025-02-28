@@ -16,8 +16,7 @@
 <br>
 
 <div align="center">
-   <img src="https://raw.githubusercontent.com/Chamal1120/flutter-nic-decoder/refs/heads/main/repo-assets/Screenshot_1.webp" height="400px">
-   <img src="https://raw.githubusercontent.com/Chamal1120/flutter-nic-decoder/refs/heads/main/repo-assets/Screenshot_2.webp" height="400px">
+   <img src="https://raw.githubusercontent.com/Chamal1120/flutter-nic-decoder/refs/heads/main/repo-assets/cover.webp" height="400px">
 </div>
 
 ## About
@@ -54,7 +53,7 @@ This is a flutter app to decode the <a href="https://en.wikipedia.org/wiki/Natio
 3. <a href="https://pub.dev/packages/flutter_launcher_icons" target="blank">Flutter launcher icons</a> for generating launcher icons
 4. Flutter test and mockito for testing
 5. Dart doc for api documentation
-5. Github actions for CI/CD
+5. GitHub actions for CI/CD
 
 #### Folder Structure
 
