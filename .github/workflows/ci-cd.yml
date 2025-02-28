@@ -80,7 +80,7 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # Decrypt the relese key for signing the application builds
+      # Decrypt the release key for signing the application builds
       - name: Decrypt keystore
         run: |
           gpg --quiet --batch --yes --passphrase "${{ secrets.GPG_PASSPHRASE }}" \
@@ -159,7 +159,7 @@ jobs:
           fetch-depth: 0 # Fetch all history for tags
           ref: main
 
-      # Download the upload-artifacts from previous stage
+      # Download the uploaded artifacts from previous stage
       - name: Download arm APK
         uses: actions/download-artifact@v4
         with:
@@ -171,7 +171,7 @@ jobs:
           name: app-arm64
           path: release-assets/
 
-      # Generate release notes using commit history and tag comparison
+      # Generate release notes using commit history by tag comparison
       - name: Generate Release Notes
         run: |
           # Get previous tag
